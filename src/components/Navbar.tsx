@@ -34,7 +34,7 @@ const Navbar = () => {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <Button variant="ghost" asChild>
-              <a href="mailto:contact@receiptsync.com">Contact Us</a>
+              <a href="mailto:receiptsync@gmail.com">Contact Us</a>
             </Button>
             <Button className="gradient-primary" asChild>
               <a href="#waitlist">Join Waitlist</a>
@@ -65,7 +65,7 @@ const Navbar = () => {
               </a>
               <div className="flex flex-col gap-2 pt-4">
                 <Button variant="ghost" className="w-full" asChild>
-                  <a href="mailto:contact@receiptsync.com">Contact Us</a>
+                  <a href="mailto:receiptsync@gmail.com">Contact Us</a>
                 </Button>
                 <Button className="gradient-primary w-full" asChild>
                   <a href="#waitlist">Join Waitlist</a>

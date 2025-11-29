@@ -44,8 +44,8 @@ const Hero = () => {
                 ))}
               </div>
               <div className="text-sm text-muted-foreground">
-                <div className="font-semibold text-foreground">10,000+ users</div>
-                <div>saving hours every week</div>
+                <div className="font-semibold text-foreground">Join the waitlist</div>
+                <div>First 100 users get early access</div>
               </div>
             </div>
           </div>
