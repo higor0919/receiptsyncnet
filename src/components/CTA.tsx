@@ -3,7 +3,7 @@ import Waitlist from "@/components/Waitlist";
 
 const benefits = [
   "No credit card required",
-  "14-day free trial",
+  "7-day free trial",
   "Cancel anytime",
   "Full access to all features"
 ];
@@ -24,7 +24,7 @@ const CTA = () => {
               </h2>
               
               <p className="text-xl md:text-2xl mb-8 opacity-90">
-                Join 10,000+ businesses who've already said goodbye to manual data entry
+                Be among the first to experience the future of receipt management
               </p>
 
               <div className="flex justify-center mb-8">
