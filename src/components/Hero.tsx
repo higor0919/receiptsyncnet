@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import Waitlist from "@/components/Waitlist";
 import appHome from "@/assets/app-home.png";
 import appCamera from "@/assets/app-camera.png";
 import appAnalytics from "@/assets/app-analytics.png";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center gradient-hero overflow-hidden">
+    <section id="waitlist" className="relative min-h-screen flex items-center justify-center gradient-hero overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
@@ -33,18 +33,8 @@ const Hero = () => {
               AI extracts all data instantly to your Google Sheets.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="gradient-primary text-lg h-14 px-8 group" asChild>
-                <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
-                  Download on Google Play
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg h-14 px-8" asChild>
-                <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer">
-                  Download on App Store
-                </a>
-              </Button>
+            <div className="flex justify-center lg:justify-start">
+              <Waitlist variant="hero" />
             </div>
 
             <div className="flex items-center gap-6 justify-center lg:justify-start pt-4">
