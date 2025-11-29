@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
+import Waitlist from "@/components/Waitlist";
 
 const benefits = [
   "No credit card required",
@@ -27,28 +27,8 @@ const CTA = () => {
                 Join 10,000+ businesses who've already said goodbye to manual data entry
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <Button 
-                  size="lg" 
-                  variant="secondary"
-                  className="text-lg h-14 px-8 bg-white text-primary hover:bg-white/90 group"
-                  asChild
-                >
-                  <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
-                    Download on Google Play
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="text-lg h-14 px-8 border-white/30 text-white hover:bg-white/10"
-                  asChild
-                >
-                  <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer">
-                    Download on App Store
-                  </a>
-                </Button>
+              <div className="flex justify-center mb-8">
+                <Waitlist variant="cta" />
               </div>
 
               <div className="flex flex-wrap justify-center gap-6">

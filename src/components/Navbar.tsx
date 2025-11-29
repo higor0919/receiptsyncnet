@@ -37,7 +37,7 @@ const Navbar = () => {
               <a href="mailto:contact@receiptsync.com">Contact Us</a>
             </Button>
             <Button className="gradient-primary" asChild>
-              <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">Download App</a>
+              <a href="#waitlist">Join Waitlist</a>
             </Button>
           </div>
 
@@ -68,7 +68,7 @@ const Navbar = () => {
                   <a href="mailto:contact@receiptsync.com">Contact Us</a>
                 </Button>
                 <Button className="gradient-primary w-full" asChild>
-                  <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">Download App</a>
+                  <a href="#waitlist">Join Waitlist</a>
                 </Button>
               </div>
             </div>
