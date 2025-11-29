@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Receipt, Menu } from "lucide-react";
 import { useState } from "react";
+import appIcon from "@/assets/app-icon.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,8 +12,8 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center">
-              <Receipt className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 rounded-xl overflow-hidden">
+              <img src={appIcon} alt="ReceiptSync app icon" className="w-full h-full object-cover" />
             </div>
             <span className="text-xl font-bold text-foreground">ReceiptSync</span>
           </div>
@@ -32,11 +33,11 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost">
-              Sign In
+            <Button variant="ghost" asChild>
+              <a href="mailto:contact@receiptsync.com">Contact Us</a>
             </Button>
-            <Button className="gradient-primary">
-              Get Started
+            <Button className="gradient-primary" asChild>
+              <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">Download App</a>
             </Button>
           </div>
 
@@ -63,11 +64,11 @@ const Navbar = () => {
                 Pricing
               </a>
               <div className="flex flex-col gap-2 pt-4">
-                <Button variant="ghost" className="w-full">
-                  Sign In
+                <Button variant="ghost" className="w-full" asChild>
+                  <a href="mailto:contact@receiptsync.com">Contact Us</a>
                 </Button>
-                <Button className="gradient-primary w-full">
-                  Get Started
+                <Button className="gradient-primary w-full" asChild>
+                  <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">Download App</a>
                 </Button>
               </div>
             </div>

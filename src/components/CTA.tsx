@@ -32,16 +32,22 @@ const CTA = () => {
                   size="lg" 
                   variant="secondary"
                   className="text-lg h-14 px-8 bg-white text-primary hover:bg-white/90 group"
+                  asChild
                 >
-                  Start Free Trial
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+                    Download on Google Play
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </Button>
                 <Button 
                   size="lg" 
                   variant="outline"
                   className="text-lg h-14 px-8 border-white/30 text-white hover:bg-white/10"
+                  asChild
                 >
-                  Schedule Demo
+                  <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer">
+                    Download on App Store
+                  </a>
                 </Button>
               </div>
 
