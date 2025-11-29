@@ -34,12 +34,16 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="gradient-primary text-lg h-14 px-8 group">
-                Get Started Free
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <Button size="lg" className="gradient-primary text-lg h-14 px-8 group" asChild>
+                <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+                  Download on Google Play
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg h-14 px-8">
-                Watch Demo
+              <Button size="lg" variant="outline" className="text-lg h-14 px-8" asChild>
+                <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer">
+                  Download on App Store
+                </a>
               </Button>
             </div>
 
