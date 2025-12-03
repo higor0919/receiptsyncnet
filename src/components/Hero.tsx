@@ -82,7 +82,7 @@ const Hero = () => {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-semibold text-foreground">10 seconds</div>
+                  <div className="font-semibold text-foreground">5 seconds</div>
                   <div className="text-sm text-muted-foreground">per receipt</div>
                 </div>
               </div>
