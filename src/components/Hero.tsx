@@ -36,18 +36,6 @@ const Hero = () => {
             <div className="flex justify-center lg:justify-start">
               <Waitlist variant="hero" />
             </div>
-
-            <div className="flex items-center gap-6 justify-center lg:justify-start pt-4">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full bg-muted border-2 border-background" />
-                ))}
-              </div>
-              <div className="text-sm text-muted-foreground">
-                <div className="font-semibold text-foreground">Join the waitlist</div>
-                <div>First 100 users get early access</div>
-              </div>
-            </div>
           </div>
 
           {/* Right column - App Screenshots */}
