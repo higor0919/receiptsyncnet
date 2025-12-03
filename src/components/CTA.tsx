@@ -19,13 +19,18 @@ const CTA = () => {
                 Be the first to automate your receipts. Join the early access list.
               </p>
 
-              <div className="flex justify-center mb-8">
+              <div className="flex justify-center mb-6">
                 <Waitlist variant="cta" />
               </div>
 
-              <p className="text-white/80 text-lg">
-                Get exclusive early access and a special launch-day discount.
-              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-white/90">
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center justify-center w-6 h-6 bg-white/20 rounded-full text-sm font-bold">🎁</span>
+                  <span>First 100 users get early access</span>
+                </div>
+                <span className="hidden sm:inline text-white/50">•</span>
+                <span className="text-white/70">Special launch-day discount</span>
+              </div>
             </div>
           </div>
         </div>
