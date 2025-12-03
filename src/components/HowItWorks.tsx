@@ -78,7 +78,7 @@ const HowItWorks = () => {
           {[
             { value: "2 min", label: "Setup time" },
             { value: "99%+", label: "High-Precision AI" },
-            { value: "10 sec", label: "Per receipt" },
+            { value: "5 sec", label: "Per receipt" },
             { value: "10hrs+", label: "Saved monthly" }
           ].map((stat, index) => (
             <div 
