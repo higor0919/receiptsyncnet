@@ -1,12 +1,4 @@
-import { Check } from "lucide-react";
 import Waitlist from "@/components/Waitlist";
-
-const benefits = [
-  "No credit card required",
-  "7-day free trial",
-  "Cancel anytime",
-  "Full access to all features"
-];
 
 const CTA = () => {
   return (
@@ -24,34 +16,17 @@ const CTA = () => {
               </h2>
               
               <p className="text-xl md:text-2xl mb-8 opacity-90">
-                Be among the first to experience the future of receipt management
+                Be the first to automate your receipts. Join the early access list.
               </p>
 
               <div className="flex justify-center mb-8">
                 <Waitlist variant="cta" />
               </div>
 
-              <div className="flex flex-wrap justify-center gap-6">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-2 text-white/90">
-                    <Check className="w-5 h-5" />
-                    <span>{benefit}</span>
-                  </div>
-                ))}
-              </div>
+              <p className="text-white/80 text-lg">
+                Get exclusive early access and a special launch-day discount.
+              </p>
             </div>
-          </div>
-        </div>
-
-        {/* Trust indicators */}
-        <div className="mt-16 text-center">
-          <p className="text-sm text-muted-foreground mb-6">
-            Trusted by businesses worldwide
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-50">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="w-32 h-12 bg-muted rounded-lg" />
-            ))}
           </div>
         </div>
       </div>

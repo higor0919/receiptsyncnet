@@ -77,7 +77,7 @@ const HowItWorks = () => {
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {[
             { value: "2 min", label: "Setup time" },
-            { value: "100%", label: "Accurate" },
+            { value: "99%+", label: "High-Precision AI" },
             { value: "10 sec", label: "Per receipt" },
             { value: "10hrs+", label: "Saved monthly" }
           ].map((stat, index) => (

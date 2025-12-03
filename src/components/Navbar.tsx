@@ -26,8 +26,8 @@ const Navbar = () => {
             <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors font-medium">
               How It Works
             </a>
-            <a href="#pricing" className="text-foreground hover:text-primary transition-colors font-medium">
-              Pricing
+            <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium">
+              FAQ
             </a>
           </div>
 
@@ -60,8 +60,8 @@ const Navbar = () => {
               <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors font-medium">
                 How It Works
               </a>
-              <a href="#pricing" className="text-foreground hover:text-primary transition-colors font-medium">
-                Pricing
+              <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium">
+                FAQ
               </a>
               <div className="flex flex-col gap-2 pt-4">
                 <Button variant="ghost" className="w-full" asChild>
