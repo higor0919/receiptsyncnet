@@ -8,44 +8,44 @@ import { Button } from "@/components/ui/button";
 
 const faqs = [
   {
+    question: "What is ReceiptSync?",
+    answer: "ReceiptSync is an AI-powered mobile app that lets you scan receipts and automatically sync the extracted data to Google Sheets. Simply take a photo, and our AI extracts vendor, date, amount, and more—saving you hours of manual data entry."
+  },
+  {
+    question: "When will ReceiptSync launch?",
+    answer: "We're currently in the final stages of development and expect to launch soon. Join the waitlist to be among the first to know when we go live and get exclusive early access benefits."
+  },
+  {
+    question: "What do I get as an early access user?",
+    answer: "The first 100 users on the waitlist will receive 50% off for the first year, a lifetime early adopter badge, priority feature requests, and access to our exclusive early access community."
+  },
+  {
     question: "How accurate is the AI data extraction?",
     answer: "Our AI has been trained on millions of receipts and achieves 99%+ accuracy for standard receipt fields like vendor, date, amount, and tax. If there's ever an issue, you can quickly edit the data before it syncs to your Google Sheet."
   },
   {
     question: "How does the Google Sheets integration work?",
-    answer: "During onboarding, you'll connect your Google account (secure OAuth authentication). You can then select an existing spreadsheet or let us create a new one with pre-configured columns. Every time you scan a receipt, the data is instantly added as a new row in your chosen sheet. The receipt image is also linked so you can access it anytime."
+    answer: "You'll connect your Google account using secure OAuth authentication. You can then select an existing spreadsheet or let us create a new one with pre-configured columns. Every time you scan a receipt, the data is instantly added as a new row in your chosen sheet."
   },
   {
     question: "What happens to my receipt images?",
-    answer: "All receipt images are securely stored in the cloud and linked to your Google Sheet entries. You can view, download, or delete them anytime from the app. We use bank-level encryption to protect your data, and you maintain full ownership of all your receipts."
+    answer: "All receipt images are securely stored in the cloud and linked to your Google Sheet entries. You can view, download, or delete them anytime from the app. We use bank-level encryption to protect your data."
   },
   {
     question: "Can I use this for my business expenses?",
-    answer: "Absolutely! ReceiptSync is perfect for business expense tracking. The AI automatically categorizes receipts (meals, travel, office supplies, etc.), making it easy to organize expenses for accounting or tax purposes. You can export your data anytime for your accountant."
+    answer: "Absolutely! ReceiptSync is perfect for business expense tracking. The AI automatically categorizes receipts (meals, travel, office supplies, etc.), making it easy to organize expenses for accounting or tax purposes."
   },
   {
-    question: "What if I need to edit extracted data?",
-    answer: "After each scan, you'll see a preview of the extracted data before it's saved. You can quickly edit any field if needed. You can also edit receipts later from your receipt history or directly in your Google Sheet."
+    question: "Will there be a free trial?",
+    answer: "Yes! When we launch, all users will get a 7-day free trial with full access to all features. No credit card required to start your trial."
   },
   {
     question: "Does it work offline?",
-    answer: "You can capture receipt photos offline, and they'll be queued for processing. Once you're back online, the app will automatically extract the data and sync it to your Google Sheet. This ensures you never miss a receipt, even without internet access."
+    answer: "You can capture receipt photos offline, and they'll be queued for processing. Once you're back online, the app will automatically extract the data and sync it to your Google Sheet."
   },
   {
-    question: "How many receipts can I scan?",
-    answer: "With the Pro plan, you get unlimited receipt scanning. Scan as many receipts as you need—whether it's 10 per month or 1,000. No hidden limits, no extra charges."
-  },
-  {
-    question: "What happens after my free trial ends?",
-    answer: "After your 7-day free trial, you'll be automatically enrolled in the Pro plan at the selected billing cycle (monthly or annual). You'll receive a reminder email before the trial ends. You can cancel anytime during the trial with no charges."
-  },
-  {
-    question: "Can I cancel my subscription?",
-    answer: "Yes, you can cancel anytime from your account settings. If you cancel, you'll continue to have access until the end of your billing period. Your data and receipts remain safe and exportable even after cancellation."
-  },
-  {
-    question: "Do you offer refunds?",
-    answer: "We offer a 30-day money-back guarantee. If you're not satisfied with ReceiptSync for any reason, contact our support team within 30 days of purchase for a full refund—no questions asked."
+    question: "How can I stay updated on the launch?",
+    answer: "Join our waitlist above! We'll send you updates on our progress and notify you immediately when ReceiptSync is ready. You can also reach us at receiptsync@gmail.com for any questions."
   }
 ];
 
@@ -92,10 +92,10 @@ const FAQ = () => {
               Still have questions?
             </h3>
             <p className="text-muted-foreground mb-4">
-              Our support team is here to help you get the most out of ReceiptSync
+              We'd love to hear from you
             </p>
-            <Button variant="outline" size="lg">
-              Contact Support
+            <Button variant="outline" size="lg" asChild>
+              <a href="mailto:receiptsync@gmail.com">Contact Us</a>
             </Button>
           </div>
         </div>
