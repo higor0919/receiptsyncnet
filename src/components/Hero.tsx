@@ -33,8 +33,12 @@ const Hero = () => {
               AI extracts all data instantly to your Google Sheets.
             </p>
 
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex flex-col items-center lg:items-start gap-4">
               <Waitlist variant="hero" />
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <span className="inline-flex items-center justify-center w-5 h-5 bg-primary/20 text-primary rounded-full text-xs font-bold">✓</span>
+                <span><strong className="text-foreground">First 100 users</strong> get early access</span>
+              </div>
             </div>
           </div>
 
