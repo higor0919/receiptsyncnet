@@ -6,7 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Check, Loader2 } from "lucide-react";
 
 interface WaitlistProps {
-  variant?: "hero" | "cta";
+  variant?: "hero" | "cta" | "secondary";
 }
 
 const Waitlist = ({ variant = "hero" }: WaitlistProps) => {
@@ -95,6 +95,7 @@ const Waitlist = ({ variant = "hero" }: WaitlistProps) => {
           type="submit"
           disabled={isLoading}
           size={variant === "cta" ? "lg" : "default"}
+          variant={variant === "secondary" ? "secondary" : "default"}
           className={
             variant === "cta"
               ? "h-14 px-8 text-lg bg-white text-primary hover:bg-white/90"
