@@ -14,8 +14,8 @@ const Pricing = () => {
     "Priority email support"
   ];
 
-  const lifetimePerks = [
-    "One-time payment, lifetime access",
+  const annualPerks = [
+    "Save 30% compared to monthly",
     "All future updates included",
     "Priority feature requests",
     "Exclusive early adopter badge",
@@ -54,7 +54,7 @@ const Pricing = () => {
               <div className="mb-8">
                 <div className="flex items-baseline gap-2">
                   <span className="text-5xl font-bold text-foreground">
-                    $14.99
+                    $13.99
                   </span>
                   <span className="text-xl text-muted-foreground">
                     /month
@@ -105,7 +105,7 @@ const Pricing = () => {
               {/* Plan Name */}
               <h3 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
                 <Crown className="w-6 h-6 text-primary" />
-                Lifetime Deal
+                Annual Deal
               </h3>
               <p className="text-muted-foreground mb-6">
                 For the first 100 early access members
@@ -115,25 +115,25 @@ const Pricing = () => {
               <div className="mb-8">
                 <div className="flex items-baseline gap-2">
                   <span className="text-5xl font-bold text-foreground">
-                    $79.99
+                    $119.88
                   </span>
                   <span className="text-xl text-muted-foreground">
-                    one-time
+                    /year
                   </span>
                 </div>
                 <p className="text-sm text-secondary mt-2 font-medium">
-                  Pay once, use forever. No subscriptions.
+                  Just $9.99/month — Save 30% vs monthly!
                 </p>
               </div>
 
-              {/* Lifetime Perks */}
+              {/* Annual Perks */}
               <div className="mb-8 p-5 bg-primary/5 rounded-xl border border-primary/20">
                 <p className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
                   <Gift className="w-4 h-4 text-primary" />
                   Early adopter exclusive perks:
                 </p>
                 <div className="grid gap-3">
-                  {lifetimePerks.map((perk, index) => (
+                  {annualPerks.map((perk, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                         <Check className="w-3 h-3 text-primary" />
