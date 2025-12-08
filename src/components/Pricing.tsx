@@ -15,7 +15,7 @@ const Pricing = () => {
   ];
 
   const annualPerks = [
-    "Save 30% compared to monthly",
+    "Save over 50% compared to monthly",
     "All future updates included",
     "Priority feature requests",
     "Exclusive early adopter badge",
@@ -115,14 +115,14 @@ const Pricing = () => {
               <div className="mb-8">
                 <div className="flex items-baseline gap-2">
                   <span className="text-5xl font-bold text-foreground">
-                    $119.88
+                    $79.99
                   </span>
                   <span className="text-xl text-muted-foreground">
                     /year
                   </span>
                 </div>
                 <p className="text-sm text-secondary mt-2 font-medium">
-                  Just $9.99/month — Save 30% vs monthly!
+                  Just $6.67/month — Limited deal for first 100!
                 </p>
               </div>
 
