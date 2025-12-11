@@ -54,7 +54,7 @@ const Pricing = () => {
               <div className="mb-8">
                 <div className="flex items-baseline gap-2">
                   <span className="text-5xl font-bold text-foreground">
-                    $13.99
+                    $12.99
                   </span>
                   <span className="text-xl text-muted-foreground">
                     /month
