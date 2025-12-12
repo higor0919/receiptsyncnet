@@ -1,14 +1,14 @@
-import { FileText } from "lucide-react";
 import Waitlist from "@/components/Waitlist";
+import appIcon from "@/assets/app-icon.png";
 
 const Hero = () => {
   return (
     <section id="waitlist" className="relative min-h-screen flex flex-col items-center justify-start pt-24 overflow-hidden bg-background">
       {/* Main content - centered */}
       <div className="container mx-auto px-4 py-12 relative z-10 flex flex-col items-center text-center">
-        {/* Document icon */}
-        <div className="mb-6 p-4 bg-foreground rounded-2xl">
-          <FileText className="w-8 h-8 text-background" />
+        {/* App icon */}
+        <div className="mb-6 w-16 h-16 rounded-2xl overflow-hidden">
+          <img src={appIcon} alt="ReceiptSync app icon" className="w-full h-full object-cover" />
         </div>
         
         <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
