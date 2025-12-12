@@ -1,8 +1,5 @@
 import { Sparkles } from "lucide-react";
 import Waitlist from "@/components/Waitlist";
-import appHome from "@/assets/app-home.png";
-import appCamera from "@/assets/app-camera.png";
-import appAnalytics from "@/assets/app-analytics.png";
 
 const Hero = () => {
   return (
@@ -42,34 +39,20 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right column - App Screenshots */}
+          {/* Right column - Hero Video */}
           <div className="relative animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <div className="relative flex items-center justify-center gap-4">
-              {/* Left phone - Home screen */}
-              <div className="relative z-10 transform -rotate-6 hover:rotate-0 transition-transform duration-300">
-                <img 
-                  src={appHome} 
-                  alt="ReceiptSync home screen with quick scan access" 
-                  className="w-64 md:w-72 h-auto rounded-3xl shadow-2xl border-4 border-muted"
-                />
-              </div>
-
-              {/* Center phone - Camera scanning (larger, in front) */}
-              <div className="relative z-20 transform scale-110 hover:scale-115 transition-transform duration-300">
-                <img 
-                  src={appCamera} 
-                  alt="ReceiptSync camera interface scanning a receipt" 
-                  className="w-64 md:w-72 h-auto rounded-3xl shadow-2xl border-4 border-muted"
-                />
-              </div>
-
-              {/* Right phone - Analytics dashboard */}
-              <div className="relative z-10 transform rotate-6 hover:rotate-0 transition-transform duration-300">
-                <img 
-                  src={appAnalytics} 
-                  alt="ReceiptSync expense analysis dashboard with insights" 
-                  className="w-64 md:w-72 h-auto rounded-3xl shadow-2xl border-4 border-muted"
-                />
+            <div className="relative flex items-center justify-center">
+              <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-muted">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full max-w-md h-auto"
+                >
+                  <source src="/videos/hero-video.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
 
