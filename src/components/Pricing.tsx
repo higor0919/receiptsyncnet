@@ -15,7 +15,6 @@ const Pricing = () => {
   ];
 
   const annualPerks = [
-    "Save over 50% compared to monthly",
     "All future updates included",
     "Priority feature requests",
     "Exclusive early adopter badge",
