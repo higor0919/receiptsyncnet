@@ -1,4 +1,4 @@
-import { Receipt } from "lucide-react";
+import appIcon from "@/assets/app-icon.png";
 
 const Footer = () => {
   return (
@@ -8,8 +8,8 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center">
-                <Receipt className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden">
+                <img src={appIcon} alt="ReceiptSync" className="w-full h-full object-cover" />
               </div>
               <span className="text-xl font-bold text-foreground">ReceiptSync</span>
             </div>
