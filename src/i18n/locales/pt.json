@@ -24,6 +24,10 @@
     "title": "Tudo que Você Precisa,",
     "titleHighlight": "Nada que Não Precisa",
     "subtitle": "Quatro recursos poderosos que eliminam o gerenciamento manual de recibos para sempre",
+    "instantCapture": {
+      "title": "Escaneamento com Um Toque",
+      "description": "Abra o app, tire uma foto. É isso. Sem botões extras, sem menus complicados. A maneira mais rápida de capturar um recibo."
+    },
     "aiExtraction": {
       "title": "Extração com IA",
       "description": "Nossa IA extrai instantaneamente fornecedor, data, valor, impostos e categoria. Nunca mais digite dados de recibos manualmente."
@@ -31,18 +35,6 @@
     "googleSheets": {
       "title": "Google Sheets em Tempo Real",
       "description": "Os dados extraídos aparecem na sua planilha instantaneamente. Chega de exportar CSVs ou entrada manual de dados."
-    },
-    "instantCapture": {
-      "title": "Escaneamento com Um Toque",
-      "description": "Abra o app, tire uma foto. É isso. Sem botões extras, sem menus complicados. A maneira mais rápida de capturar um recibo."
-    },
-    "smartCategories": {
-      "title": "Categorias Inteligentes",
-      "description": "Categorize despesas automaticamente em refeições, viagens, material de escritório e mais para fácil organização."
-    },
-    "cloudStorage": {
-      "title": "Armazenamento na Nuvem",
-      "description": "Todas as suas imagens de recibos são armazenadas com segurança na nuvem e vinculadas às suas entradas na planilha."
     },
     "fastSetup": {
       "title": "Configuração Simples",

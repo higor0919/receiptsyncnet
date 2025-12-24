@@ -15,18 +15,18 @@ const Hero = () => {
         </div>
         
         <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-          <span className="text-foreground">Scan → Done</span>
+          <span className="text-foreground">{t('hero.title')}</span>
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-xl mb-8">
-          Stop wasting hours on receipts. Just scan it, and you're done. AI extracts all data instantly to your Google Sheets.
+          {t('hero.subtitle')}
         </p>
 
         <div className="flex flex-col items-center gap-3 mb-12">
           <Waitlist variant="hero" />
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span className="inline-flex items-center justify-center w-4 h-4 text-foreground text-xs">✓</span>
-            <span>First 100 users get early access</span>
+            <span>{t('hero.earlyAccess')}</span>
           </div>
         </div>
 
@@ -59,11 +59,11 @@ const Hero = () => {
             </div>
             <div className="flex flex-col items-center">
               <span className="text-2xl md:text-3xl font-bold text-foreground">5 sec</span>
-              <span className="text-sm text-muted-foreground">Per receipt</span>
+              <span className="text-sm text-muted-foreground">{t('stats.perReceipt')}</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-2xl md:text-3xl font-bold text-foreground">10hrs+</span>
-              <span className="text-sm text-muted-foreground">Saved monthly</span>
+              <span className="text-sm text-muted-foreground">{t('stats.savedMonthly')}</span>
             </div>
           </div>
         </div>
