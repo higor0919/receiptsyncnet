@@ -1,39 +1,49 @@
+import { useTranslation } from "react-i18next";
 import { Camera, Sparkles, CheckCircle2 } from "lucide-react";
 
-const steps = [
-  {
-    number: "01",
-    icon: Camera,
-    title: "Scan",
-    description: "Open the app and snap a photo of your receipt. Our AI automatically detects and crops it perfectly."
-  },
-  {
-    number: "02",
-    icon: Sparkles,
-    title: "Extract",
-    description: "AI instantly reads and extracts all key data: vendor, date, amount, tax, and suggests a category."
-  },
-  {
-    number: "03",
-    icon: CheckCircle2,
-    title: "Done",
-    description: "Data appears in your Google Sheet in real-time. That's it. Get back to your business."
-  }
-];
-
 const HowItWorks = () => {
+  const { t } = useTranslation();
+
+  const steps = [
+    {
+      number: "01",
+      icon: Camera,
+      title: t('howItWorks.step1.title', 'Scan'),
+      description: t('howItWorks.step1.description', 'Open the app and snap a photo of your receipt. Our AI automatically detects and crops it perfectly.')
+    },
+    {
+      number: "02",
+      icon: Sparkles,
+      title: t('howItWorks.step2.title', 'Extract'),
+      description: t('howItWorks.step2.description', 'AI instantly reads and extracts all key data: vendor, date, amount, tax, and suggests a category.')
+    },
+    {
+      number: "03",
+      icon: CheckCircle2,
+      title: t('howItWorks.step3.title', 'Done'),
+      description: t('howItWorks.step3.description', 'Data appears in your Google Sheet in real-time. That\'s it. Get back to your business.')
+    }
+  ];
+
+  const stats = [
+    { value: "<30 sec", label: t('hero.setupTime', 'Setup time') },
+    { value: "99%+", label: t('hero.aiAccuracy', 'High-Precision AI') },
+    { value: "5 sec", label: t('stats.perReceipt', 'Per receipt') },
+    { value: "10hrs+", label: t('stats.savedMonthly', 'Saved monthly') }
+  ];
+
   return (
     <section id="how-it-works" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Three Steps to{" "}
+            {t('howItWorks.title', 'Three Steps to')}{" "}
             <span className="bg-gradient-to-r from-secondary to-emerald-600 bg-clip-text text-transparent">
-              Freedom
+              {t('howItWorks.titleHighlight', 'Freedom')}
             </span>
           </h2>
           <p className="text-xl text-muted-foreground">
-            The simplest receipt management workflow ever created
+            {t('howItWorks.subtitle', 'The simplest receipt management workflow ever created')}
           </p>
         </div>
 
@@ -75,12 +85,7 @@ const HowItWorks = () => {
 
         {/* Stats section */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-          {[
-            { value: "<30 sec", label: "Setup time" },
-            { value: "99%+", label: "High-Precision AI" },
-            { value: "5 sec", label: "Per receipt" },
-            { value: "10hrs+", label: "Saved monthly" }
-          ].map((stat, index) => (
+          {stats.map((stat, index) => (
             <div 
               key={index}
               className="text-center animate-slide-up"
