@@ -8,30 +8,33 @@
   },
   "hero": {
     "badge": "Em Breve",
-    "title": "Transforme Qualquer Recibo em",
-    "titleHighlight": "Dados do Google Sheets",
-    "subtitle": "Tire uma foto, deixe a IA extrair os detalhes e veja seus dados de despesas fluírem perfeitamente para o Google Sheets. Sem digitação manual. Sem complicação.",
+    "title": "Escaneie → Pronto",
+    "subtitle": "Pare de perder horas com recibos. Apenas escaneie e pronto. A IA extrai todos os dados instantaneamente para seu Google Sheets.",
     "joinWaitlist": "Entrar na Lista",
     "watchDemo": "Ver Demo",
     "setupTime": "Tempo de configuração",
     "aiAccuracy": "Precisão da IA",
-    "googleSheetsSync": "Sincronização Google Sheets",
-    "earlyAccessSpots": "Vagas de Acesso Antecipado"
+    "earlyAccess": "Os 100 primeiros usuários ganham acesso antecipado"
+  },
+  "stats": {
+    "perReceipt": "Por recibo",
+    "savedMonthly": "Economizado mensalmente"
   },
   "features": {
-    "title": "Tudo que você precisa para",
-    "titleHighlight": "rastrear despesas",
+    "title": "Tudo que Você Precisa,",
+    "titleHighlight": "Nada que Não Precisa",
+    "subtitle": "Quatro recursos poderosos que eliminam o gerenciamento manual de recibos para sempre",
     "aiExtraction": {
       "title": "Extração com IA",
-      "description": "Nossa IA avançada lê seus recibos e extrai fornecedor, data, valor, impostos e categoria com 99%+ de precisão."
+      "description": "Nossa IA extrai instantaneamente fornecedor, data, valor, impostos e categoria. Nunca mais digite dados de recibos manualmente."
     },
     "googleSheets": {
-      "title": "Sincronização Google Sheets",
-      "description": "Sincronize dados extraídos com seu Google Sheets em tempo real. Sua planilha de despesas atualiza automaticamente."
+      "title": "Google Sheets em Tempo Real",
+      "description": "Os dados extraídos aparecem na sua planilha instantaneamente. Chega de exportar CSVs ou entrada manual de dados."
     },
     "instantCapture": {
-      "title": "Captura Instantânea",
-      "description": "Simplesmente tire uma foto com seu celular. A IA processa em segundos, sem entrada manual de dados."
+      "title": "Escaneamento com Um Toque",
+      "description": "Abra o app, tire uma foto. É isso. Sem botões extras, sem menus complicados. A maneira mais rápida de capturar um recibo."
     },
     "smartCategories": {
       "title": "Categorias Inteligentes",
@@ -39,70 +42,70 @@
     },
     "cloudStorage": {
       "title": "Armazenamento na Nuvem",
-      "description": "Todas as imagens de recibos são armazenadas com segurança na nuvem e vinculadas às suas entradas na planilha."
+      "description": "Todas as suas imagens de recibos são armazenadas com segurança na nuvem e vinculadas às suas entradas na planilha."
     },
     "fastSetup": {
-      "title": "Configuração em 30 Segundos",
-      "description": "Conecte sua conta Google e comece a escanear. Sem configuração complexa ou treinamento necessário."
+      "title": "Configuração Simples",
+      "description": "Conecte sua conta Google, selecione sua planilha e pronto. Configure em 2 minutos, economize horas todo mês."
     }
   },
   "howItWorks": {
-    "title": "Como Funciona",
-    "subtitle": "Do recibo à planilha em segundos",
+    "title": "Três Passos para a",
+    "titleHighlight": "Liberdade",
+    "subtitle": "O fluxo de gerenciamento de recibos mais simples já criado",
     "step1": {
-      "title": "Fotografe Seu Recibo",
-      "description": "Tire uma foto de qualquer recibo com a câmera do seu celular. Nossa IA cuida do resto."
+      "title": "Escaneie",
+      "description": "Abra o app e tire uma foto do seu recibo. Nossa IA detecta e recorta automaticamente."
     },
     "step2": {
-      "title": "IA Extrai os Dados",
-      "description": "OCR avançado e IA extraem fornecedor, data, valor, impostos e categoria automaticamente."
+      "title": "Extraia",
+      "description": "A IA lê instantaneamente e extrai todos os dados principais: fornecedor, data, valor, impostos e sugere uma categoria."
     },
     "step3": {
-      "title": "Sincroniza com Sheets",
-      "description": "Os dados fluem instantaneamente para seu Google Sheet. Rastreie, analise e reporte com facilidade."
+      "title": "Pronto",
+      "description": "Os dados aparecem no seu Google Sheet em tempo real. É isso. Volte aos seus negócios."
     }
   },
   "pricing": {
-    "title": "Preços Simples e Transparentes",
-    "subtitle": "Comece grátis, faça upgrade quando estiver pronto",
+    "title": "Preços",
+    "titleHighlight": "Simples",
+    "subtitle": "Escolha o plano que funciona melhor para você",
     "monthly": "Mensal",
-    "annual": "Anual",
-    "bestValue": "Melhor Valor",
+    "monthlyDesc": "Perfeito para começar",
+    "annual": "Plano Anual",
+    "annualDesc": "Para os primeiros 100 membros de acesso antecipado",
+    "bestValue": "MELHOR VALOR",
     "perMonth": "/mês",
     "perYear": "/ano",
-    "billedAnnually": "Cobrado anualmente",
-    "joinWaitlist": "Entrar na Lista",
-    "free": {
-      "title": "Grátis",
-      "description": "Perfeito para experimentar o ReceiptSync",
-      "feature1": "10 recibos por mês",
-      "feature2": "Extração básica com IA",
-      "feature3": "1 conexão Google Sheet",
-      "feature4": "Histórico de 7 dias"
+    "cancelAnytime": "Cancele quando quiser",
+    "annualSavings": "Apenas R$3,33/mês — Oferta limitada para os 100 primeiros!",
+    "everythingYouNeed": "Tudo que você precisa:",
+    "fullAccess": "Acesso total a todos os recursos:",
+    "exclusivePerks": "Vantagens exclusivas para early adopters:",
+    "joinToSecure": "Entre na lista de espera para garantir este preço",
+    "questions": "Tem perguntas?",
+    "features": {
+      "unlimited": "Escaneamento ilimitado de recibos",
+      "ai": "Extração de dados com IA",
+      "sync": "Sincronização em tempo real com Google Sheets",
+      "categories": "Categorização automática",
+      "cloud": "Armazenamento na nuvem para recibos",
+      "access": "Acesso mobile e web",
+      "export": "Exportar para CSV/PDF",
+      "support": "Suporte prioritário por email"
     },
-    "pro": {
-      "title": "Pro",
-      "description": "Para quem precisa de mais",
-      "feature1": "Recibos ilimitados",
-      "feature2": "IA avançada com 99%+ precisão",
-      "feature3": "Google Sheets ilimitados",
-      "feature4": "Histórico ilimitado",
-      "feature5": "Suporte prioritário",
-      "feature6": "Categorias personalizadas"
-    },
-    "earlyAccess": {
-      "title": "Oferta de Acesso Antecipado",
-      "description": "Oferta por tempo limitado para membros da lista",
-      "feature1": "Tudo do Pro",
-      "feature2": "50% de desconto no primeiro ano",
-      "feature3": "Badge de early adopter vitalício",
-      "feature4": "Solicitações de recursos prioritárias",
-      "feature5": "Acesso à comunidade exclusiva"
+    "perks": {
+      "updates": "Todas as atualizações futuras incluídas",
+      "priority": "Solicitações de recursos prioritárias",
+      "badge": "Badge exclusivo de early adopter",
+      "community": "Comunidade de acesso antecipado"
     }
   },
   "faq": {
     "title": "Perguntas Frequentes",
     "subtitle": "Tudo que você precisa saber sobre o ReceiptSync",
+    "stillHaveQuestions": "Ainda tem perguntas?",
+    "loveToHear": "Adoraríamos ouvir você",
     "q1": {
       "question": "Quando o ReceiptSync será lançado?",
       "answer": "Estamos nos estágios finais de desenvolvimento e esperamos lançar em breve. Entre na lista de espera para ser um dos primeiros a saber quando formos ao ar e obter benefícios exclusivos de acesso antecipado."
@@ -141,9 +144,11 @@
     }
   },
   "cta": {
-    "title": "Pronto para Simplificar Seu Rastreamento de Despesas?",
-    "subtitle": "Junte-se a milhares de outros na lista de espera. Seja o primeiro a experimentar o gerenciamento de recibos sem esforço.",
-    "joinWaitlist": "Entrar na Lista de Espera"
+    "title": "Pronto para Parar de Perder Tempo com Recibos?",
+    "subtitle": "Seja o primeiro a automatizar seus recibos. Entre na lista de acesso antecipado.",
+    "joinWaitlist": "Entrar na Lista de Espera",
+    "earlyAccess": "Os 100 primeiros usuários ganham acesso antecipado",
+    "discount": "Desconto especial de lançamento"
   },
   "waitlist": {
     "title": "Obter Acesso Antecipado",
@@ -161,7 +166,7 @@
     "invalidEmailDescription": "Por favor, digite um endereço de email válido"
   },
   "footer": {
-    "tagline": "Transforme recibos em dados de planilha com extração alimentada por IA.",
+    "tagline": "A maneira mais rápida de gerenciar recibos. Escaneie, extraia, sincronize. É isso.",
     "product": "Produto",
     "features": "Recursos",
     "howItWorks": "Como Funciona",
