@@ -51,6 +51,12 @@ i18n
     },
     fallbackLng: 'en',
     supportedLngs: SUPPORTED_LANGUAGES,
+
+    // Critical: ensure en-US / ja-JP resolves to base language resources
+    load: 'languageOnly',
+    nonExplicitSupportedLngs: true,
+    cleanCode: true,
+
     detection: {
       // Order of detection methods
       order: ['localStorage', 'navigator', 'htmlTag'],

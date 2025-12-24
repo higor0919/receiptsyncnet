@@ -17,8 +17,8 @@ const languages = [
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
-  const currentLanguage = languages.find((lang) => lang.code === i18n.language) || languages[0];
-
+  const currentCode = i18n.resolvedLanguage || i18n.language;
+  const currentLanguage = languages.find((lang) => lang.code === currentCode) || languages[0];
   const handleLanguageChange = (langCode: string) => {
     i18n.changeLanguage(langCode);
     // Save to localStorage for persistence
