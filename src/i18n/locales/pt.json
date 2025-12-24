@@ -33,7 +33,7 @@
       "description": "Nossa IA extrai instantaneamente fornecedor, data, valor, impostos e categoria. Nunca mais digite dados de recibos manualmente."
     },
     "googleSheets": {
-      "title": "Google Sheets em Tempo Real",
+      "title": "Sincronização Google Sheets em Tempo Real",
       "description": "Os dados extraídos aparecem na sua planilha instantaneamente. Chega de exportar CSVs ou entrada manual de dados."
     },
     "fastSetup": {
