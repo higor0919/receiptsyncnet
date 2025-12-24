@@ -29,7 +29,7 @@
       "description": "Our AI instantly extracts vendor, date, amount, tax, and category. Never manually type receipt data again."
     },
     "googleSheets": {
-      "title": "Real-Time Google Sheets",
+      "title": "Real-Time Google Sheets Sync",
       "description": "Extracted data appears in your spreadsheet instantly. No more exporting CSVs or manual data entry."
     },
     "instantCapture": {
