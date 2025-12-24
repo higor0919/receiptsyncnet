@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -14,14 +15,15 @@ const Waitlist = ({ variant = "hero" }: WaitlistProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address",
+        title: t('waitlist.invalidEmail'),
+        description: t('waitlist.invalidEmailDescription'),
         variant: "destructive",
       });
       return;
@@ -37,8 +39,8 @@ const Waitlist = ({ variant = "hero" }: WaitlistProps) => {
       if (error) {
         if (error.code === "23505") {
           toast({
-            title: "Already registered",
-            description: "This email is already on the waitlist!",
+            title: t('waitlist.alreadyRegistered'),
+            description: t('waitlist.alreadyRegisteredDescription'),
           });
         } else {
           throw error;
@@ -46,16 +48,16 @@ const Waitlist = ({ variant = "hero" }: WaitlistProps) => {
       } else {
         setIsSuccess(true);
         toast({
-          title: "Welcome to the waitlist!",
-          description: "We'll notify you when we launch.",
+          title: t('waitlist.success'),
+          description: t('waitlist.successDescription'),
         });
         setEmail("");
       }
     } catch (error) {
       console.error("Error joining waitlist:", error);
       toast({
-        title: "Something went wrong",
-        description: "Please try again later",
+        title: t('waitlist.error'),
+        description: t('waitlist.errorDescription'),
         variant: "destructive",
       });
     } finally {
@@ -69,7 +71,7 @@ const Waitlist = ({ variant = "hero" }: WaitlistProps) => {
         <div className="flex items-center gap-2 bg-background/10 backdrop-blur-sm rounded-full px-6 py-3">
           <Check className="w-5 h-5 text-green-500" />
           <span className={variant === "cta" ? "text-white" : "text-foreground"}>
-            You're on the list!
+            {t('waitlist.success')}
           </span>
         </div>
       </div>
@@ -81,7 +83,7 @@ const Waitlist = ({ variant = "hero" }: WaitlistProps) => {
       <div className="flex gap-2">
         <Input
           type="email"
-          placeholder="Enter your email"
+          placeholder={t('waitlist.placeholder')}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={isLoading}
@@ -105,10 +107,10 @@ const Waitlist = ({ variant = "hero" }: WaitlistProps) => {
           {isLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin mr-2" />
-              Joining...
+              {t('waitlist.joining')}
             </>
           ) : (
-            "Join Waitlist"
+            t('waitlist.button')
           )}
         </Button>
       </div>

@@ -1,0 +1,178 @@
+{
+  "nav": {
+    "features": "機能",
+    "howItWorks": "使い方",
+    "pricing": "料金",
+    "faq": "よくある質問",
+    "joinWaitlist": "ウェイトリストに参加"
+  },
+  "hero": {
+    "badge": "近日公開",
+    "title": "レシートを",
+    "titleHighlight": "Googleスプレッドシートのデータに",
+    "subtitle": "写真を撮ると、AIが詳細を抽出し、経費データがGoogleスプレッドシートにシームレスに流れます。手動入力不要。手間いらず。",
+    "joinWaitlist": "ウェイトリストに参加",
+    "watchDemo": "デモを見る",
+    "setupTime": "セットアップ時間",
+    "aiAccuracy": "AI精度",
+    "googleSheetsSync": "Googleシート同期",
+    "earlyAccessSpots": "早期アクセス枠"
+  },
+  "features": {
+    "title": "経費追跡に必要な",
+    "titleHighlight": "すべての機能",
+    "aiExtraction": {
+      "title": "AI搭載の抽出",
+      "description": "高度なAIがレシートを読み取り、店舗名、日付、金額、税金、カテゴリを99%以上の精度で抽出します。"
+    },
+    "googleSheets": {
+      "title": "Googleシート同期",
+      "description": "抽出したデータをリアルタイムでGoogleスプレッドシートにシームレスに同期。経費スプレッドシートが自動更新されます。"
+    },
+    "instantCapture": {
+      "title": "即時キャプチャ",
+      "description": "スマホで写真を撮るだけ。AIが数秒で処理し、手動入力は不要です。"
+    },
+    "smartCategories": {
+      "title": "スマートカテゴリ",
+      "description": "食事、旅行、事務用品などに経費を自動分類し、簡単に整理できます。"
+    },
+    "cloudStorage": {
+      "title": "クラウドストレージ",
+      "description": "すべてのレシート画像はクラウドに安全に保存され、スプレッドシートのエントリにリンクされます。"
+    },
+    "fastSetup": {
+      "title": "30秒セットアップ",
+      "description": "Googleアカウントを接続してスキャン開始。複雑な設定やトレーニングは不要です。"
+    }
+  },
+  "howItWorks": {
+    "title": "使い方",
+    "subtitle": "レシートからスプレッドシートまで数秒で",
+    "step1": {
+      "title": "レシートを撮影",
+      "description": "スマホのカメラでレシートの写真を撮ります。あとはAIにお任せください。"
+    },
+    "step2": {
+      "title": "AIがデータを抽出",
+      "description": "高度なOCRとAIが店舗名、日付、金額、税金、カテゴリを自動抽出します。"
+    },
+    "step3": {
+      "title": "シートに同期",
+      "description": "データが即座にGoogleシートに流れます。簡単に追跡、分析、レポートできます。"
+    }
+  },
+  "pricing": {
+    "title": "シンプルで透明な料金",
+    "subtitle": "無料で始めて、準備ができたらアップグレード",
+    "monthly": "月額",
+    "annual": "年額",
+    "bestValue": "お得",
+    "perMonth": "/月",
+    "perYear": "/年",
+    "billedAnnually": "年間一括請求",
+    "joinWaitlist": "ウェイトリストに参加",
+    "free": {
+      "title": "無料",
+      "description": "ReceiptSyncを試すのに最適",
+      "feature1": "月10レシート",
+      "feature2": "基本的なAI抽出",
+      "feature3": "1つのGoogleシート接続",
+      "feature4": "7日間のレシート履歴"
+    },
+    "pro": {
+      "title": "Pro",
+      "description": "もっと必要な個人向け",
+      "feature1": "無制限のレシート",
+      "feature2": "99%以上精度の高度なAI",
+      "feature3": "無制限のGoogleシート",
+      "feature4": "無制限のレシート履歴",
+      "feature5": "優先サポート",
+      "feature6": "カスタムカテゴリ"
+    },
+    "earlyAccess": {
+      "title": "早期アクセス特典",
+      "description": "ウェイトリストメンバー限定オファー",
+      "feature1": "Proのすべての機能",
+      "feature2": "初年度50%オフ",
+      "feature3": "永久アーリーアダプターバッジ",
+      "feature4": "優先機能リクエスト",
+      "feature5": "限定コミュニティアクセス"
+    }
+  },
+  "faq": {
+    "title": "よくある質問",
+    "subtitle": "ReceiptSyncについて知っておくべきこと",
+    "q1": {
+      "question": "ReceiptSyncはいつリリースされますか？",
+      "answer": "現在開発の最終段階にあり、まもなくリリース予定です。ウェイトリストに参加して、公開時にいち早く通知を受け取り、限定アクセス特典を手に入れましょう。"
+    },
+    "q2": {
+      "question": "早期アクセスユーザーとして何がもらえますか？",
+      "answer": "ウェイトリストの最初の100人のユーザーには、初年度50%オフ、永久アーリーアダプターバッジ、優先機能リクエスト、限定コミュニティへのアクセスが提供されます。"
+    },
+    "q3": {
+      "question": "AIデータ抽出の精度はどのくらいですか？",
+      "answer": "私たちのAIは数百万のレシートでトレーニングされており、店舗名、日付、金額、税金などの標準的なフィールドで99%以上の精度を達成しています。問題がある場合は、Googleシートに同期する前にすばやくデータを編集できます。"
+    },
+    "q4": {
+      "question": "Googleスプレッドシートとの連携はどのように機能しますか？",
+      "answer": "安全なOAuth認証を使用してGoogleアカウントを接続します。既存のスプレッドシートを選択するか、事前設定された列を持つ新しいスプレッドシートを作成できます。レシートをスキャンするたびに、データは選択したシートに新しい行として即座に追加されます。"
+    },
+    "q5": {
+      "question": "レシート画像はどうなりますか？",
+      "answer": "すべてのレシート画像はクラウドに安全に保存され、Googleシートのエントリにリンクされます。アプリからいつでも表示、ダウンロード、削除できます。銀行レベルの暗号化でデータを保護しています。"
+    },
+    "q6": {
+      "question": "ビジネス経費に使用できますか？",
+      "answer": "もちろんです！ReceiptSyncはビジネス経費の追跡に最適です。AIがレシートを自動的にカテゴリ分け（食事、旅行、事務用品など）するので、会計や税務目的で経費を簡単に整理できます。"
+    },
+    "q7": {
+      "question": "無料トライアルはありますか？",
+      "answer": "はい！リリース時に、すべてのユーザーがすべての機能に完全アクセスできる7日間の無料トライアルを受けられます。トライアル開始にクレジットカードは不要です。"
+    },
+    "q8": {
+      "question": "オフラインで動作しますか？",
+      "answer": "オフラインでレシートの写真を撮影でき、処理のためにキューに入れられます。オンラインに戻ると、アプリが自動的にデータを抽出し、Googleシートに同期します。"
+    },
+    "q9": {
+      "question": "リリースの最新情報を入手するにはどうすればよいですか？",
+      "answer": "上のウェイトリストに参加してください！進捗状況の更新をお送りし、ReceiptSyncの準備ができ次第すぐにお知らせします。ご質問はreceiptsync@gmail.comまでお問い合わせください。"
+    }
+  },
+  "cta": {
+    "title": "経費追跡を簡単にする準備はできましたか？",
+    "subtitle": "ウェイトリストの数千人に加わりましょう。手間のかからないレシート管理を最初に体験してください。",
+    "joinWaitlist": "ウェイトリストに参加"
+  },
+  "waitlist": {
+    "title": "早期アクセスを取得",
+    "subtitle": "ReceiptSyncを最初に試してください",
+    "placeholder": "メールアドレスを入力",
+    "button": "ウェイトリストに参加",
+    "joining": "参加中...",
+    "success": "リストに登録されました！",
+    "successDescription": "ReceiptSyncがリリースされ次第お知らせします。",
+    "error": "エラーが発生しました",
+    "errorDescription": "後でもう一度お試しください。",
+    "alreadyRegistered": "登録済みです",
+    "alreadyRegisteredDescription": "このメールアドレスは既にウェイトリストに登録されています。",
+    "invalidEmail": "無効なメール",
+    "invalidEmailDescription": "有効なメールアドレスを入力してください"
+  },
+  "footer": {
+    "tagline": "AI搭載の抽出でレシートをスプレッドシートデータに変換します。",
+    "product": "製品",
+    "features": "機能",
+    "howItWorks": "使い方",
+    "pricing": "料金",
+    "faq": "よくある質問",
+    "support": "サポート",
+    "contact": "お問い合わせ",
+    "helpCenter": "ヘルプセンター",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約",
+    "legal": "法的情報",
+    "allRightsReserved": "全著作権所有。"
+  }
+}

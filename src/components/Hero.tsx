@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next";
 import Waitlist from "@/components/Waitlist";
 import appIcon from "@/assets/app-icon.png";
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="waitlist" className="relative min-h-screen flex flex-col items-center justify-start pt-24 overflow-hidden bg-background">
       {/* Main content - centered */}
@@ -48,11 +51,11 @@ const Hero = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="flex flex-col items-center">
               <span className="text-2xl md:text-3xl font-bold text-foreground">&lt;30 sec</span>
-              <span className="text-sm text-muted-foreground">Setup time</span>
+              <span className="text-sm text-muted-foreground">{t('hero.setupTime')}</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-2xl md:text-3xl font-bold text-foreground">99%+</span>
-              <span className="text-sm text-muted-foreground">AI Accuracy</span>
+              <span className="text-sm text-muted-foreground">{t('hero.aiAccuracy')}</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-2xl md:text-3xl font-bold text-foreground">5 sec</span>

@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import appIcon from "@/assets/app-icon.png";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-muted/30 border-t border-border py-12">
       <div className="container mx-auto px-4">
@@ -14,29 +17,29 @@ const Footer = () => {
               <span className="text-xl font-bold text-foreground">ReceiptSync</span>
             </div>
             <p className="text-muted-foreground max-w-sm">
-              The fastest way to manage receipts. Scan, extract, sync. That's it.
+              {t('footer.tagline')}
             </p>
           </div>
 
           {/* Product */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Product</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.product')}</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Pricing</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">FAQ</a></li>
+              <li><a href="#features" className="hover:text-primary transition-colors">{t('footer.features')}</a></li>
+              <li><a href="#pricing" className="hover:text-primary transition-colors">{t('footer.pricing')}</a></li>
+              <li><a href="#faq" className="hover:text-primary transition-colors">{t('footer.faq')}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Download</a></li>
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Company</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.support')}</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li><a href="#" className="hover:text-primary transition-colors">About</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="mailto:receiptsync@gmail.com" className="hover:text-primary transition-colors">{t('footer.contact')}</a></li>
             </ul>
           </div>
         </div>
@@ -44,11 +47,11 @@ const Footer = () => {
         {/* Bottom */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2024 ReceiptSync. All rights reserved.
+            © 2024 ReceiptSync. {t('footer.allRightsReserved')}
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-primary transition-colors">{t('footer.privacyPolicy')}</a>
+            <a href="#" className="hover:text-primary transition-colors">{t('footer.termsOfService')}</a>
             <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
           </div>
         </div>
