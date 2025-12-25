@@ -52,12 +52,20 @@ const Forum = () => {
           title,
           content,
           created_at,
-          user_id,
-          profiles!posts_user_id_fkey (username)
+          user_id
         `)
         .order('created_at', { ascending: false });
 
       if (postsError) throw postsError;
+
+      // Fetch profiles separately
+      const userIds = [...new Set((postsData || []).map(p => p.user_id))];
+      const { data: profilesData } = await supabase
+        .from('profiles')
+        .select('user_id, username')
+        .in('user_id', userIds);
+
+      const profilesMap = new Map((profilesData || []).map(p => [p.user_id, p]));
 
       // Get comment counts for each post
       const postsWithCounts = await Promise.all(
@@ -67,9 +75,10 @@ const Forum = () => {
             .select('*', { count: 'exact', head: true })
             .eq('post_id', post.id);
 
+          const profile = profilesMap.get(post.user_id);
           return {
             ...post,
-            profiles: post.profiles,
+            profiles: profile ? { username: profile.username } : null,
             comment_count: count || 0
           };
         })
