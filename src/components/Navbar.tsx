@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import appIcon from "@/assets/app-icon.png";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
@@ -32,6 +33,9 @@ const Navbar = () => {
             <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium">
               {t('nav.faq')}
             </a>
+            <Link to="/forum" className="text-foreground hover:text-primary transition-colors font-medium">
+              {t('nav.forum')}
+            </Link>
           </div>
 
           {/* CTA Buttons */}
@@ -67,6 +71,9 @@ const Navbar = () => {
               <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium">
                 {t('nav.faq')}
               </a>
+              <Link to="/forum" className="text-foreground hover:text-primary transition-colors font-medium">
+                {t('nav.forum')}
+              </Link>
               <div className="flex flex-col gap-2 pt-4">
                 <Button variant="ghost" className="w-full" asChild>
                   <a href="mailto:receiptsync@gmail.com">Contact Us</a>

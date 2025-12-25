@@ -67,14 +67,28 @@ const PostDetail = () => {
           title,
           content,
           created_at,
-          user_id,
-          profiles!posts_user_id_fkey (username)
+          user_id
         `)
         .eq('id', id)
         .maybeSingle();
 
       if (error) throw error;
-      setPost(data);
+      
+      if (data) {
+        // Fetch profile separately
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('username')
+          .eq('user_id', data.user_id)
+          .maybeSingle();
+        
+        setPost({
+          ...data,
+          profiles: profileData ? { username: profileData.username } : null
+        });
+      } else {
+        setPost(null);
+      }
     } catch (error) {
       console.error('Error fetching post:', error);
     }
@@ -89,20 +103,33 @@ const PostDetail = () => {
           content,
           created_at,
           user_id,
-          parent_id,
-          profiles!comments_user_id_fkey (username)
+          parent_id
         `)
         .eq('post_id', id)
         .order('created_at', { ascending: true });
 
       if (error) throw error;
 
+      // Fetch profiles for all commenters
+      const userIds = [...new Set((data || []).map(c => c.user_id))];
+      const { data: profilesData } = await supabase
+        .from('profiles')
+        .select('user_id, username')
+        .in('user_id', userIds);
+
+      const profilesMap = new Map((profilesData || []).map(p => [p.user_id, p]));
+
       // Organize comments into tree structure
       const commentMap = new Map<string, Comment>();
       const rootComments: Comment[] = [];
 
       (data || []).forEach((comment) => {
-        commentMap.set(comment.id, { ...comment, replies: [] });
+        const profile = profilesMap.get(comment.user_id);
+        commentMap.set(comment.id, { 
+          ...comment, 
+          profiles: profile ? { username: profile.username } : null,
+          replies: [] 
+        });
       });
 
       (data || []).forEach((comment) => {
