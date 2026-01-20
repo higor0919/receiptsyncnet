@@ -5,17 +5,17 @@
     "pricing": "料金",
     "faq": "よくある質問",
     "forum": "フォーラム",
-    "joinWaitlist": "ウェイトリストに参加"
+    "downloadApp": "アプリをダウンロード"
   },
   "hero": {
-    "badge": "近日公開",
+    "badge": "今すぐ利用可能",
     "title": "スキャン → 完了",
     "subtitle": "レシートに時間を無駄にするのはもうやめましょう。スキャンするだけで完了。AIがすべてのデータを瞬時にGoogle Sheetsに抽出します。",
-    "joinWaitlist": "ウェイトリストに参加",
+    "downloadApp": "アプリをダウンロード",
     "watchDemo": "デモを見る",
     "setupTime": "セットアップ時間",
     "aiAccuracy": "AI精度",
-    "earlyAccess": "先着100名様に早期アクセス"
+    "availableNow": "iOSとAndroidで利用可能"
   },
   "stats": {
     "perReceipt": "1枚あたり",
@@ -138,25 +138,16 @@
   },
   "cta": {
     "title": "レシートに時間を無駄にするのをやめる準備はできましたか？",
-    "subtitle": "最初にレシートを自動化しましょう。早期アクセスリストに参加してください。",
-    "joinWaitlist": "ウェイトリストに参加",
-    "earlyAccess": "先着100名様に早期アクセス",
-    "discount": "発売日特別割引"
+    "subtitle": "今すぐダウンロードしてレシートを自動化しましょう。",
+    "downloadApp": "アプリをダウンロード",
+    "freeToStart": "無料で開始",
+    "noCardRequired": "クレジットカード不要"
   },
-  "waitlist": {
-    "title": "早期アクセスを取得",
-    "subtitle": "ReceiptSyncを最初に試してください",
-    "placeholder": "メールアドレスを入力",
-    "button": "ウェイトリストに参加",
-    "joining": "参加中...",
-    "success": "リストに登録されました！",
-    "successDescription": "ReceiptSyncがリリースされ次第お知らせします。",
-    "error": "エラーが発生しました",
-    "errorDescription": "後でもう一度お試しください。",
-    "alreadyRegistered": "登録済みです",
-    "alreadyRegisteredDescription": "このメールアドレスは既にウェイトリストに登録されています。",
-    "invalidEmail": "無効なメール",
-    "invalidEmailDescription": "有効なメールアドレスを入力してください"
+  "download": {
+    "downloadOn": "からダウンロード",
+    "appStore": "App Store",
+    "getItOn": "で入手",
+    "googlePlay": "Google Play"
   },
   "footer": {
     "tagline": "レシート管理の最速方法。スキャン、抽出、同期。以上です。",

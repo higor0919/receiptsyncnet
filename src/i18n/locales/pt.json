@@ -5,17 +5,17 @@
     "pricing": "Preços",
     "faq": "FAQ",
     "forum": "Fórum",
-    "joinWaitlist": "Entrar na Lista"
+    "downloadApp": "Baixar App"
   },
   "hero": {
-    "badge": "Em Breve",
+    "badge": "Disponível Agora",
     "title": "Escaneie → Pronto",
     "subtitle": "Pare de perder horas com recibos. Apenas escaneie e pronto. A IA extrai todos os dados instantaneamente para seu Google Sheets.",
-    "joinWaitlist": "Entrar na Lista",
+    "downloadApp": "Baixar App",
     "watchDemo": "Ver Demo",
     "setupTime": "Tempo de configuração",
     "aiAccuracy": "Precisão da IA",
-    "earlyAccess": "Os 100 primeiros usuários ganham acesso antecipado"
+    "availableNow": "Disponível no iOS e Android"
   },
   "stats": {
     "perReceipt": "Por recibo",
@@ -138,25 +138,16 @@
   },
   "cta": {
     "title": "Pronto para Parar de Perder Tempo com Recibos?",
-    "subtitle": "Seja o primeiro a automatizar seus recibos. Entre na lista de acesso antecipado.",
-    "joinWaitlist": "Entrar na Lista de Espera",
-    "earlyAccess": "Os 100 primeiros usuários ganham acesso antecipado",
-    "discount": "Desconto especial de lançamento"
+    "subtitle": "Baixe agora e automatize seus recibos instantaneamente.",
+    "downloadApp": "Baixar App",
+    "freeToStart": "Grátis para começar",
+    "noCardRequired": "Sem necessidade de cartão de crédito"
   },
-  "waitlist": {
-    "title": "Obter Acesso Antecipado",
-    "subtitle": "Seja um dos primeiros a experimentar o ReceiptSync",
-    "placeholder": "Digite seu email",
-    "button": "Entrar na Lista",
-    "joining": "Entrando...",
-    "success": "Você está na lista!",
-    "successDescription": "Notificaremos você assim que o ReceiptSync for lançado.",
-    "error": "Algo deu errado",
-    "errorDescription": "Por favor, tente novamente mais tarde.",
-    "alreadyRegistered": "Já registrado",
-    "alreadyRegisteredDescription": "Este email já está na nossa lista de espera.",
-    "invalidEmail": "Email inválido",
-    "invalidEmailDescription": "Por favor, digite um endereço de email válido"
+  "download": {
+    "downloadOn": "Baixar na",
+    "appStore": "App Store",
+    "getItOn": "Disponível no",
+    "googlePlay": "Google Play"
   },
   "footer": {
     "tagline": "A maneira mais rápida de gerenciar recibos. Escaneie, extraia, sincronize. É isso.",

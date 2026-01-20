@@ -5,17 +5,17 @@
     "pricing": "Pricing",
     "faq": "FAQ",
     "forum": "Forum",
-    "joinWaitlist": "Join Waitlist"
+    "downloadApp": "Download App"
   },
   "hero": {
-    "badge": "Coming Soon",
+    "badge": "Available Now",
     "title": "Scan → Done",
     "subtitle": "Stop wasting hours on receipts. Just scan it, and you're done. AI extracts all data instantly to your Google Sheets.",
-    "joinWaitlist": "Join Waitlist",
+    "downloadApp": "Download App",
     "watchDemo": "Watch Demo",
     "setupTime": "Setup time",
     "aiAccuracy": "AI Accuracy",
-    "earlyAccess": "First 100 users get early access"
+    "availableNow": "Available on iOS and Android"
   },
   "stats": {
     "perReceipt": "Per receipt",
@@ -146,25 +146,16 @@
   },
   "cta": {
     "title": "Ready to Stop Wasting Time on Receipts?",
-    "subtitle": "Be the first to automate your receipts. Join the early access list.",
-    "joinWaitlist": "Join the Waitlist",
-    "earlyAccess": "First 100 users get early access",
-    "discount": "Special launch-day discount"
+    "subtitle": "Download now and automate your receipts instantly.",
+    "downloadApp": "Download App",
+    "freeToStart": "Free to start",
+    "noCardRequired": "No credit card required"
   },
-  "waitlist": {
-    "title": "Get Early Access",
-    "subtitle": "Be among the first to try ReceiptSync",
-    "placeholder": "Enter your email",
-    "button": "Join Waitlist",
-    "joining": "Joining...",
-    "success": "You're on the list!",
-    "successDescription": "We'll notify you as soon as ReceiptSync launches.",
-    "error": "Something went wrong",
-    "errorDescription": "Please try again later.",
-    "alreadyRegistered": "Already registered",
-    "alreadyRegisteredDescription": "This email is already on our waitlist.",
-    "invalidEmail": "Invalid email",
-    "invalidEmailDescription": "Please enter a valid email address"
+  "download": {
+    "downloadOn": "Download on the",
+    "appStore": "App Store",
+    "getItOn": "Get it on",
+    "googlePlay": "Google Play"
   },
   "footer": {
     "tagline": "The fastest way to manage receipts. Scan, extract, sync. That's it.",

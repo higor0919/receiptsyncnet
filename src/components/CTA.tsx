@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import Waitlist from "@/components/Waitlist";
+import AppStoreButtons from "@/components/AppStoreButtons";
 
 const CTA = () => {
   const { t } = useTranslation();
@@ -19,20 +19,20 @@ const CTA = () => {
               </h2>
               
               <p className="text-xl md:text-2xl mb-8 opacity-90">
-                {t('cta.subtitle', 'Be the first to automate your receipts. Join the early access list.')}
+                {t('cta.subtitle', 'Download now and automate your receipts instantly.')}
               </p>
 
               <div className="flex justify-center mb-6">
-                <Waitlist variant="cta" />
+                <AppStoreButtons variant="cta" />
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-white/90">
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center justify-center w-6 h-6 bg-white/20 rounded-full text-sm font-bold">🎁</span>
-                  <span>{t('cta.earlyAccess', 'First 100 users get early access')}</span>
+                  <span className="inline-flex items-center justify-center w-6 h-6 bg-white/20 rounded-full text-sm font-bold">✨</span>
+                  <span>{t('cta.freeToStart', 'Free to start')}</span>
                 </div>
                 <span className="hidden sm:inline text-white/50">•</span>
-                <span className="text-white/70">{t('cta.discount', 'Special launch-day discount')}</span>
+                <span className="text-white/70">{t('cta.noCardRequired', 'No credit card required')}</span>
               </div>
             </div>
           </div>
