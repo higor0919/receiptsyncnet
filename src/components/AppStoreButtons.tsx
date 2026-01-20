@@ -14,7 +14,7 @@ const PlayStoreIcon = () => (
 const AppStoreButtons = ({ variant = "hero" }: AppStoreButtonsProps) => {
   const { t } = useTranslation();
 
-  const appStoreUrl = "https://apps.apple.com/us/app/receipt-sync/id6756007251";
+  const appStoreUrl = "https://apps.apple.com/us/app/receiptsync-receipt-tracker/id6756007251";
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.receipt_sync";
 
   if (variant === "navbar") {
