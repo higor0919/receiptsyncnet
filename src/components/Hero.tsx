@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
-import Waitlist from "@/components/Waitlist";
+import AppStoreButtons from "@/components/AppStoreButtons";
 import appIcon from "@/assets/app-icon.png";
 
 const Hero = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="waitlist" className="relative min-h-screen flex flex-col items-center justify-start pt-24 overflow-hidden bg-background">
+    <section id="download" className="relative min-h-screen flex flex-col items-center justify-start pt-24 overflow-hidden bg-background">
       {/* Main content - centered */}
       <div className="container mx-auto px-4 py-12 relative z-10 flex flex-col items-center text-center">
         {/* App icon */}
@@ -23,10 +23,10 @@ const Hero = () => {
         </p>
 
         <div className="flex flex-col items-center gap-3 mb-12">
-          <Waitlist variant="hero" />
+          <AppStoreButtons variant="hero" />
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <span className="inline-flex items-center justify-center w-4 h-4 text-foreground text-xs">✓</span>
-            <span>{t('hero.earlyAccess')}</span>
+            <span>{t('hero.availableNow')}</span>
           </div>
         </div>
 
