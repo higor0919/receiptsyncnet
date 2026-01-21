@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, MessageSquare, Reply } from 'lucide-react';
+import { ArrowLeft, MessageSquare, Reply, User, Calendar } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 
 interface Post {
@@ -32,10 +32,9 @@ interface Comment {
   replies?: Comment[];
 }
 
-const PostDetail = () => {
+const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
-  const { user, loading: authLoading } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const { toast } = useToast();
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -44,12 +43,6 @@ const PostDetail = () => {
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyContent, setReplyContent] = useState('');
   const [submitting, setSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (!authLoading && !user) {
-      navigate('/auth');
-    }
-  }, [user, authLoading, navigate]);
 
   useEffect(() => {
     if (id) {
@@ -75,7 +68,6 @@ const PostDetail = () => {
       if (error) throw error;
       
       if (data) {
-        // Fetch profile separately
         const { data: profileData } = await supabase
           .from('profiles')
           .select('username')
@@ -110,7 +102,6 @@ const PostDetail = () => {
 
       if (error) throw error;
 
-      // Fetch profiles for all commenters
       const userIds = [...new Set((data || []).map(c => c.user_id))];
       const { data: profilesData } = await supabase
         .from('profiles')
@@ -119,7 +110,6 @@ const PostDetail = () => {
 
       const profilesMap = new Map((profilesData || []).map(p => [p.user_id, p]));
 
-      // Organize comments into tree structure
       const commentMap = new Map<string, Comment>();
       const rootComments: Comment[] = [];
 
@@ -219,13 +209,15 @@ const PostDetail = () => {
           <span>{formatDistanceToNow(new Date(comment.created_at), { addSuffix: true })}</span>
         </div>
         <p className="text-sm mb-2">{comment.content}</p>
-        <button
-          onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
-          className="text-xs text-primary hover:underline flex items-center gap-1"
-        >
-          <Reply className="w-3 h-3" />
-          Reply
-        </button>
+        {user && (
+          <button
+            onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
+            className="text-xs text-primary hover:underline flex items-center gap-1"
+          >
+            <Reply className="w-3 h-3" />
+            Reply
+          </button>
+        )}
 
         {replyingTo === comment.id && (
           <div className="mt-3 space-y-2">
@@ -258,7 +250,7 @@ const PostDetail = () => {
     </div>
   );
 
-  if (authLoading || loading) {
+  if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <p className="text-muted-foreground">Loading...</p>
@@ -270,9 +262,9 @@ const PostDetail = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <p className="text-muted-foreground mb-4">Post not found</p>
-          <Link to="/forum">
-            <Button>Back to Forum</Button>
+          <p className="text-muted-foreground mb-4">Article not found</p>
+          <Link to="/blog">
+            <Button>Back to Blog</Button>
           </Link>
         </div>
       </div>
@@ -284,46 +276,63 @@ const PostDetail = () => {
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-4">
-          <Link to="/forum" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
+          <Link to="/blog" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
             <ArrowLeft className="w-5 h-5" />
-            Back to Forum
+            Back to Blog
           </Link>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-8 max-w-3xl">
-        {/* Post */}
-        <Card className="mb-8">
-          <CardContent className="py-6">
-            <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
-            <p className="text-foreground whitespace-pre-wrap mb-4">{post.content}</p>
-            <div className="text-sm text-muted-foreground">
-              Posted by {post.profiles?.username || 'Anonymous'} •{' '}
-              {formatDistanceToNow(new Date(post.created_at), { addSuffix: true })}
+        {/* Article */}
+        <article className="mb-12">
+          <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
+            <div className="flex items-center gap-1">
+              <User className="w-4 h-4" />
+              <span>{post.profiles?.username || 'Anonymous'}</span>
             </div>
-          </CardContent>
-        </Card>
+            <div className="flex items-center gap-1">
+              <Calendar className="w-4 h-4" />
+              <span>{formatDistanceToNow(new Date(post.created_at), { addSuffix: true })}</span>
+            </div>
+          </div>
+          <div className="prose prose-neutral dark:prose-invert max-w-none">
+            <p className="text-foreground whitespace-pre-wrap leading-relaxed">{post.content}</p>
+          </div>
+        </article>
 
         {/* Comments Section */}
-        <div className="space-y-6">
+        <div className="space-y-6 border-t border-border pt-8">
           <div className="flex items-center gap-2">
             <MessageSquare className="w-5 h-5" />
             <h2 className="text-lg font-semibold">Comments</h2>
           </div>
 
-          {/* New Comment Form */}
-          <form onSubmit={handleSubmitComment} className="space-y-3">
-            <Textarea
-              placeholder="Write a comment..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              rows={3}
-              maxLength={2000}
-            />
-            <Button type="submit" disabled={submitting || !newComment.trim()}>
-              {submitting ? 'Posting...' : 'Post Comment'}
-            </Button>
-          </form>
+          {/* New Comment Form - Only for authenticated users */}
+          {user ? (
+            <form onSubmit={handleSubmitComment} className="space-y-3">
+              <Textarea
+                placeholder="Write a comment..."
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                rows={3}
+                maxLength={2000}
+              />
+              <Button type="submit" disabled={submitting || !newComment.trim()}>
+                {submitting ? 'Posting...' : 'Post Comment'}
+              </Button>
+            </form>
+          ) : (
+            <Card>
+              <CardContent className="py-4 text-center">
+                <p className="text-muted-foreground mb-3">Sign in to leave a comment</p>
+                <Link to="/auth">
+                  <Button variant="outline" size="sm">Sign In</Button>
+                </Link>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Comments List */}
           {comments.length === 0 ? (
@@ -343,4 +352,4 @@ const PostDetail = () => {
   );
 };
 
-export default PostDetail;
+export default BlogPost;
