@@ -71,8 +71,10 @@ export type Database = {
       }
       posts: {
         Row: {
+          category: string | null
           content: string
           created_at: string
+          featured_image_url: string | null
           id: string
           title: string
           updated_at: string
@@ -80,8 +82,10 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          category?: string | null
           content: string
           created_at?: string
+          featured_image_url?: string | null
           id?: string
           title: string
           updated_at?: string
@@ -89,8 +93,10 @@ export type Database = {
           user_id: string
         }
         Update: {
+          category?: string | null
           content?: string
           created_at?: string
+          featured_image_url?: string | null
           id?: string
           title?: string
           updated_at?: string

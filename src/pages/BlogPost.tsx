@@ -5,8 +5,9 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, MessageSquare, Reply, User, Calendar } from 'lucide-react';
+import { ArrowLeft, MessageSquare, Reply, User, Calendar, Clock } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 
 interface Post {
@@ -15,6 +16,8 @@ interface Post {
   content: string;
   created_at: string;
   user_id: string;
+  category?: string;
+  featured_image_url?: string;
   profiles: {
     username: string;
   } | null;
@@ -31,6 +34,12 @@ interface Comment {
   } | null;
   replies?: Comment[];
 }
+
+const calculateReadingTime = (content: string): number => {
+  const text = content.replace(/<[^>]*>/g, '');
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
+};
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
@@ -60,7 +69,9 @@ const BlogPost = () => {
           title,
           content,
           created_at,
-          user_id
+          user_id,
+          category,
+          featured_image_url
         `)
         .eq('id', id)
         .maybeSingle();
@@ -286,6 +297,26 @@ const BlogPost = () => {
       <main className="container mx-auto px-4 py-8 max-w-3xl">
         {/* Article */}
         <article className="mb-12">
+          {post.featured_image_url && (
+            <div className="aspect-video w-full rounded-lg overflow-hidden mb-6">
+              <img 
+                src={post.featured_image_url} 
+                alt={post.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+          
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            {post.category && (
+              <Badge variant="secondary">{post.category}</Badge>
+            )}
+            <div className="flex items-center gap-1 text-sm text-muted-foreground">
+              <Clock className="w-4 h-4" />
+              <span>{calculateReadingTime(post.content)} min read</span>
+            </div>
+          </div>
+
           <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
           <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
             <div className="flex items-center gap-1">
@@ -297,9 +328,10 @@ const BlogPost = () => {
               <span>{formatDistanceToNow(new Date(post.created_at), { addSuffix: true })}</span>
             </div>
           </div>
-          <div className="prose prose-neutral dark:prose-invert max-w-none">
-            <p className="text-foreground whitespace-pre-wrap leading-relaxed">{post.content}</p>
-          </div>
+          <div 
+            className="prose prose-neutral dark:prose-invert max-w-none"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </article>
 
         {/* Comments Section */}
