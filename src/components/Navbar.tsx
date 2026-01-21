@@ -33,8 +33,8 @@ const Navbar = () => {
             <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium">
               {t('nav.faq')}
             </a>
-            <Link to="/forum" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t('nav.forum')}
+            <Link to="/blog" className="text-foreground hover:text-primary transition-colors font-medium">
+              {t('nav.blog')}
             </Link>
           </div>
 
@@ -71,8 +71,8 @@ const Navbar = () => {
               <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium">
                 {t('nav.faq')}
               </a>
-              <Link to="/forum" className="text-foreground hover:text-primary transition-colors font-medium">
-                {t('nav.forum')}
+              <Link to="/blog" className="text-foreground hover:text-primary transition-colors font-medium">
+                {t('nav.blog')}
               </Link>
               <div className="flex flex-col gap-2 pt-4">
                 <Button variant="ghost" className="w-full" asChild>

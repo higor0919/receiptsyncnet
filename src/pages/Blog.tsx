@@ -3,12 +3,19 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useToast } from '@/hooks/use-toast';
-import { Plus, ArrowLeft, User, Calendar } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
+import { Card } from '@/components/ui/card';
+import { Plus, ArrowLeft, User } from 'lucide-react';
+import BlogPostCard from '@/components/blog/BlogPostCard';
+import CategorySelect from '@/components/blog/CategorySelect';
+import NewPostForm from '@/components/blog/NewPostForm';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
 
 interface Post {
   id: string;
@@ -16,39 +23,51 @@ interface Post {
   content: string;
   created_at: string;
   user_id: string;
+  category: string;
+  featured_image_url: string | null;
   profiles: {
     username: string;
   } | null;
 }
 
+const POSTS_PER_PAGE = 6;
+
 const Blog = () => {
   const { user, signOut } = useAuth();
-  const { toast } = useToast();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [showNewPost, setShowNewPost] = useState(false);
-  const [newTitle, setNewTitle] = useState('');
-  const [newContent, setNewContent] = useState('');
-  const [submitting, setSubmitting] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [selectedCategory, currentPage]);
 
   const fetchPosts = async () => {
+    setLoading(true);
     try {
-      const { data: postsData, error: postsError } = await supabase
+      // Build query
+      let query = supabase
         .from('posts')
-        .select(`
-          id,
-          title,
-          content,
-          created_at,
-          user_id
-        `)
-        .order('created_at', { ascending: false });
+        .select('id, title, content, created_at, user_id, category, featured_image_url', { count: 'exact' });
+      
+      if (selectedCategory !== 'all') {
+        query = query.eq('category', selectedCategory);
+      }
+
+      // Get paginated results
+      const from = (currentPage - 1) * POSTS_PER_PAGE;
+      const to = from + POSTS_PER_PAGE - 1;
+      
+      const { data: postsData, error: postsError, count } = await query
+        .order('created_at', { ascending: false })
+        .range(from, to);
 
       if (postsError) throw postsError;
+
+      setTotalCount(count || 0);
 
       // Fetch profiles separately
       const userIds = [...new Set((postsData || []).map(p => p.user_id))];
@@ -75,34 +94,18 @@ const Blog = () => {
     }
   };
 
-  const handleCreatePost = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!user || !newTitle.trim() || !newContent.trim()) return;
+  const totalPages = Math.ceil(totalCount / POSTS_PER_PAGE);
 
-    setSubmitting(true);
-    try {
-      const { error } = await supabase.from('posts').insert({
-        title: newTitle.trim(),
-        content: newContent.trim(),
-        user_id: user.id
-      });
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1); // Reset to first page when changing category
+  };
 
-      if (error) throw error;
-
-      toast({ title: 'Article published!', description: 'Your article is now live.' });
-      setNewTitle('');
-      setNewContent('');
-      setShowNewPost(false);
-      fetchPosts();
-    } catch (error: any) {
-      toast({
-        title: 'Error',
-        description: error.message,
-        variant: 'destructive'
-      });
-    } finally {
-      setSubmitting(false);
-    }
+  const handleNewPostSuccess = () => {
+    setShowNewPost(false);
+    setCurrentPage(1);
+    setSelectedCategory('all');
+    fetchPosts();
   };
 
   return (
@@ -119,7 +122,7 @@ const Blog = () => {
           <div className="flex items-center gap-4">
             {user ? (
               <>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
                   <User className="w-4 h-4" />
                   <span>{user.email}</span>
                 </div>
@@ -138,50 +141,29 @@ const Blog = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 max-w-3xl">
-        {/* New Post Button/Form - Only show for authenticated users */}
-        {user && (
-          <>
-            {!showNewPost ? (
-              <Button onClick={() => setShowNewPost(true)} className="mb-6 gap-2">
-                <Plus className="w-4 h-4" />
-                New Article
-              </Button>
-            ) : (
-              <Card className="mb-6">
-                <CardHeader>
-                  <CardTitle>Write a New Article</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleCreatePost} className="space-y-4">
-                    <Input
-                      placeholder="Article title..."
-                      value={newTitle}
-                      onChange={(e) => setNewTitle(e.target.value)}
-                      maxLength={200}
-                      required
-                    />
-                    <Textarea
-                      placeholder="Write your article content..."
-                      value={newContent}
-                      onChange={(e) => setNewContent(e.target.value)}
-                      rows={8}
-                      maxLength={10000}
-                      required
-                    />
-                    <div className="flex gap-2">
-                      <Button type="submit" disabled={submitting}>
-                        {submitting ? 'Publishing...' : 'Publish'}
-                      </Button>
-                      <Button type="button" variant="outline" onClick={() => setShowNewPost(false)}>
-                        Cancel
-                      </Button>
-                    </div>
-                  </form>
-                </CardContent>
-              </Card>
-            )}
-          </>
+      <main className="container mx-auto px-4 py-8 max-w-4xl">
+        {/* Controls */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center mb-6">
+          <CategorySelect 
+            value={selectedCategory} 
+            onChange={handleCategoryChange} 
+            showAll 
+          />
+          {user && !showNewPost && (
+            <Button onClick={() => setShowNewPost(true)} className="gap-2">
+              <Plus className="w-4 h-4" />
+              New Article
+            </Button>
+          )}
+        </div>
+
+        {/* New Post Form */}
+        {user && showNewPost && (
+          <NewPostForm
+            userId={user.id}
+            onSuccess={handleNewPostSuccess}
+            onCancel={() => setShowNewPost(false)}
+          />
         )}
 
         {/* Posts List */}
@@ -189,33 +171,53 @@ const Blog = () => {
           <p className="text-center text-muted-foreground py-8">Loading articles...</p>
         ) : posts.length === 0 ? (
           <Card className="py-12 text-center">
-            <p className="text-muted-foreground">No articles yet. Check back soon!</p>
+            <p className="text-muted-foreground">
+              {selectedCategory === 'all' 
+                ? 'No articles yet. Check back soon!' 
+                : `No articles in "${selectedCategory}" category.`}
+            </p>
           </Card>
         ) : (
-          <div className="space-y-6">
-            {posts.map((post) => (
-              <Link key={post.id} to={`/blog/${post.id}`}>
-                <Card className="hover:bg-accent/50 transition-colors cursor-pointer">
-                  <CardContent className="py-6">
-                    <h2 className="font-semibold text-xl mb-3">{post.title}</h2>
-                    <p className="text-muted-foreground text-sm line-clamp-3 mb-4">
-                      {post.content}
-                    </p>
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <User className="w-3 h-3" />
-                        <span>{post.profiles?.username || 'Anonymous'}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
-                        <span>{formatDistanceToNow(new Date(post.created_at), { addSuffix: true })}</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
+          <>
+            <div className="grid gap-6 md:grid-cols-2">
+              {posts.map((post) => (
+                <BlogPostCard key={post.id} post={post} />
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <Pagination className="mt-8">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious 
+                      onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                      className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                    />
+                  </PaginationItem>
+                  
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <PaginationItem key={page}>
+                      <PaginationLink
+                        onClick={() => setCurrentPage(page)}
+                        isActive={currentPage === page}
+                        className="cursor-pointer"
+                      >
+                        {page}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  
+                  <PaginationItem>
+                    <PaginationNext 
+                      onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                      className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            )}
+          </>
         )}
       </main>
     </div>
