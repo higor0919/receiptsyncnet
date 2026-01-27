@@ -1,5 +1,6 @@
 import { Apple } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { supabase } from "@/integrations/supabase/client";
 
 interface AppStoreButtonsProps {
   variant?: "hero" | "cta" | "navbar";
@@ -11,11 +12,38 @@ const PlayStoreIcon = () => (
   </svg>
 );
 
+// Get TTP cookie for TikTok tracking
+const getTTPCookie = (): string | undefined => {
+  const match = document.cookie.match(/(?:^|; )_ttp=([^;]*)/);
+  return match ? match[1] : undefined;
+};
+
+// Send TikTok server-side event for app store clicks
+const sendTikTokClickEvent = async (store: 'app_store' | 'google_play') => {
+  try {
+    await supabase.functions.invoke('tiktok-event', {
+      body: {
+        event: 'ClickButton',
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        ttp: getTTPCookie(),
+        content_name: store === 'app_store' ? 'App Store Download' : 'Google Play Download',
+      },
+    });
+    console.log(`TikTok ClickButton event sent for ${store}`);
+  } catch (error) {
+    console.error('Failed to send TikTok event:', error);
+  }
+};
+
 const AppStoreButtons = ({ variant = "hero" }: AppStoreButtonsProps) => {
   const { t } = useTranslation();
 
   const appStoreUrl = "https://apps.apple.com/us/app/receiptsync-receipt-tracker/id6756007251";
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.receipt_sync";
+
+  const handleAppStoreClick = () => sendTikTokClickEvent('app_store');
+  const handlePlayStoreClick = () => sendTikTokClickEvent('google_play');
 
   if (variant === "navbar") {
     return (
@@ -23,6 +51,7 @@ const AppStoreButtons = ({ variant = "hero" }: AppStoreButtonsProps) => {
         href={appStoreUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={handleAppStoreClick}
         className="gradient-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
       >
         {t('nav.downloadApp', 'Download App')}
@@ -48,6 +77,7 @@ const AppStoreButtons = ({ variant = "hero" }: AppStoreButtonsProps) => {
         href={appStoreUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={handleAppStoreClick}
         className={appStoreClass}
       >
         <Apple className="w-6 h-6" />
@@ -60,6 +90,7 @@ const AppStoreButtons = ({ variant = "hero" }: AppStoreButtonsProps) => {
         href={playStoreUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={handlePlayStoreClick}
         className={playStoreClass}
       >
         <PlayStoreIcon />
