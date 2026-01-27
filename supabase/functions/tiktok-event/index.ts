@@ -46,30 +46,26 @@ serve(async (req) => {
     const eventId = crypto.randomUUID();
     const eventTime = Math.floor(Date.now() / 1000);
 
-    // Build the event payload
-    const payload = {
-      pixel_code: 'D5S1QMBC77UAR2VTU55G',
+    // Build the event data
+    const eventData = {
       event: event || 'CompleteRegistration',
+      event_time: eventTime,
       event_id: eventId,
-      timestamp: new Date().toISOString(),
-      context: {
-        page: {
-          url: url || '',
-        },
-        user: {
-          email: email ? await hashSHA256(email.toLowerCase().trim()) : undefined,
-          ip: ip || undefined,
-          user_agent: userAgent || undefined,
-          ttp: ttp || undefined,
-        },
-        ad: {},
+      user: {
+        email: email ? await hashSHA256(email.toLowerCase().trim()) : undefined,
+        ip: ip || undefined,
+        user_agent: userAgent || undefined,
+        ttp: ttp || undefined,
+      },
+      page: {
+        url: url || '',
       },
       properties: {
         content_name: content_name || undefined,
       },
     };
 
-    // Send to TikTok Events API
+    // Send to TikTok Events API v1.3
     const response = await fetch('https://business-api.tiktok.com/open_api/v1.3/event/track/', {
       method: 'POST',
       headers: {
@@ -77,12 +73,9 @@ serve(async (req) => {
         'Access-Token': accessToken,
       },
       body: JSON.stringify({
-        pixel_code: payload.pixel_code,
-        event: payload.event,
-        event_id: payload.event_id,
-        timestamp: payload.timestamp,
-        context: payload.context,
-        properties: payload.properties,
+        event_source: 'web',
+        event_source_id: 'D5S1QMBC77UAR2VTU55G',
+        data: [eventData],
       }),
     });
 
