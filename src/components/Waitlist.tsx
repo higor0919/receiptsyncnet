@@ -6,6 +6,30 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Check, Loader2 } from "lucide-react";
 
+// Get TTP cookie for TikTok tracking
+const getTTPCookie = (): string | undefined => {
+  const match = document.cookie.match(/(?:^|; )_ttp=([^;]*)/);
+  return match ? match[1] : undefined;
+};
+
+// Send TikTok server-side event
+const sendTikTokEvent = async (email: string) => {
+  try {
+    const response = await supabase.functions.invoke('tiktok-event', {
+      body: {
+        event: 'CompleteRegistration',
+        email: email,
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        ttp: getTTPCookie(),
+      },
+    });
+    console.log('TikTok event sent:', response);
+  } catch (error) {
+    console.error('Failed to send TikTok event:', error);
+  }
+};
+
 interface WaitlistProps {
   variant?: "hero" | "cta" | "secondary";
 }
@@ -46,6 +70,9 @@ const Waitlist = ({ variant = "hero" }: WaitlistProps) => {
           throw error;
         }
       } else {
+        // Send TikTok CompleteRegistration event
+        sendTikTokEvent(email);
+        
         setIsSuccess(true);
         toast({
           title: t('waitlist.success'),
