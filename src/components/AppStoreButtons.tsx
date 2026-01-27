@@ -23,7 +23,7 @@ const sendTikTokClickEvent = async (store: 'app_store' | 'google_play') => {
   try {
     await supabase.functions.invoke('tiktok-event', {
       body: {
-        event: 'ClickButton',
+        event: 'Download',
         url: window.location.href,
         userAgent: navigator.userAgent,
         ttp: getTTPCookie(),
