@@ -35,7 +35,7 @@ serve(async (req) => {
       throw new Error('TikTok access token not configured');
     }
 
-    const { event, email, url, userAgent, ttp } = await req.json();
+    const { event, email, url, userAgent, ttp, content_name } = await req.json();
 
     // Get client IP from headers
     const ip = req.headers.get('x-forwarded-for')?.split(',')[0] || 
@@ -64,7 +64,9 @@ serve(async (req) => {
         },
         ad: {},
       },
-      properties: {},
+      properties: {
+        content_name: content_name || undefined,
+      },
     };
 
     // Send to TikTok Events API
