@@ -75,6 +75,7 @@ serve(async (req) => {
       body: JSON.stringify({
         event_source: 'web',
         event_source_id: 'D5S1QMBC77UAR2VTU55G',
+        test_event_code: 'TEST70023',
         data: [eventData],
       }),
     });
