@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import appIcon from "@/assets/app-icon.png";
 
 const Footer = () => {
@@ -37,8 +38,8 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4">{t('footer.support')}</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li><a href="#" className="hover:text-primary transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
+              <li><Link to="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
+              <li><Link to="/analytics" className="hover:text-primary transition-colors">Analytics</Link></li>
               <li><a href="mailto:receiptsync@gmail.com" className="hover:text-primary transition-colors">{t('footer.contact')}</a></li>
             </ul>
           </div>
