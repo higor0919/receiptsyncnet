@@ -69,6 +69,39 @@ export type Database = {
           },
         ]
       }
+      download_clicks: {
+        Row: {
+          city: string | null
+          clicked_at: string
+          country: string | null
+          country_code: string | null
+          id: string
+          referrer: string | null
+          store_type: string
+          user_agent: string | null
+        }
+        Insert: {
+          city?: string | null
+          clicked_at?: string
+          country?: string | null
+          country_code?: string | null
+          id?: string
+          referrer?: string | null
+          store_type: string
+          user_agent?: string | null
+        }
+        Update: {
+          city?: string | null
+          clicked_at?: string
+          country?: string | null
+          country_code?: string | null
+          id?: string
+          referrer?: string | null
+          store_type?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       posts: {
         Row: {
           category: string | null

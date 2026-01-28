@@ -18,9 +18,19 @@ const getTTPCookie = (): string | undefined => {
   return match ? match[1] : undefined;
 };
 
-// Send TikTok server-side event for app store clicks
-const sendTikTokClickEvent = async (store: 'app_store' | 'google_play') => {
+// Track download click for analytics and TikTok
+const trackDownloadClick = async (store: 'app_store' | 'google_play') => {
   try {
+    // Track for analytics (country detection happens server-side)
+    await supabase.functions.invoke('track-download', {
+      body: {
+        store_type: store,
+        user_agent: navigator.userAgent,
+        referrer: document.referrer || null,
+      },
+    });
+
+    // Also send TikTok event
     await supabase.functions.invoke('tiktok-event', {
       body: {
         event: 'Download',
@@ -30,9 +40,10 @@ const sendTikTokClickEvent = async (store: 'app_store' | 'google_play') => {
         content_name: store === 'app_store' ? 'App Store Download' : 'Google Play Download',
       },
     });
-    console.log(`TikTok ClickButton event sent for ${store}`);
+    
+    console.log(`Download tracked for ${store}`);
   } catch (error) {
-    console.error('Failed to send TikTok event:', error);
+    console.error('Failed to track download:', error);
   }
 };
 
@@ -42,8 +53,8 @@ const AppStoreButtons = ({ variant = "hero" }: AppStoreButtonsProps) => {
   const appStoreUrl = "https://apps.apple.com/us/app/receiptsync-receipt-tracker/id6756007251";
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.receipt_sync";
 
-  const handleAppStoreClick = () => sendTikTokClickEvent('app_store');
-  const handlePlayStoreClick = () => sendTikTokClickEvent('google_play');
+  const handleAppStoreClick = () => trackDownloadClick('app_store');
+  const handlePlayStoreClick = () => trackDownloadClick('google_play');
 
   if (variant === "navbar") {
     return (
