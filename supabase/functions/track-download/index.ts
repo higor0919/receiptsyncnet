@@ -28,24 +28,33 @@ serve(async (req) => {
     // Get client IP from headers
     const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
                req.headers.get('x-real-ip') || 
+               req.headers.get('cf-connecting-ip') ||
                '';
 
-    // Get geolocation data from IP
+    console.log('Client IP:', ip);
+
+    // Get geolocation data from IP using ip-api.com (free, no key required)
     let geoData: GeoData = {};
-    if (ip && ip !== '127.0.0.1' && ip !== '::1') {
+    if (ip && ip !== '127.0.0.1' && ip !== '::1' && !ip.startsWith('192.168.') && !ip.startsWith('10.')) {
       try {
-        const geoResponse = await fetch(`https://ipapi.co/${ip}/json/`);
+        // ip-api.com is free for non-commercial use, no API key needed
+        const geoResponse = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,countryCode,city`);
         if (geoResponse.ok) {
           const data = await geoResponse.json();
-          geoData = {
-            country_name: data.country_name,
-            country_code: data.country_code,
-            city: data.city,
-          };
+          console.log('Geo data:', data);
+          if (data.status === 'success') {
+            geoData = {
+              country_name: data.country,
+              country_code: data.countryCode,
+              city: data.city,
+            };
+          }
         }
       } catch (geoError) {
         console.error('Geo lookup failed:', geoError);
       }
+    } else {
+      console.log('Skipping geo lookup for local/private IP');
     }
 
     // Insert the click record
