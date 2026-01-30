@@ -51,7 +51,7 @@ const Footer = () => {
             © 2024 ReceiptSync. {t('footer.allRightsReserved')}
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-primary transition-colors">{t('footer.privacyPolicy')}</a>
+            <Link to="/privacy-policy" className="hover:text-primary transition-colors">{t('footer.privacyPolicy')}</Link>
             <a href="#" className="hover:text-primary transition-colors">{t('footer.termsOfService')}</a>
             <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
           </div>
