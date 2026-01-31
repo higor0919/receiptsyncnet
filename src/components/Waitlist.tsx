@@ -12,8 +12,19 @@ const getTTPCookie = (): string | undefined => {
   return match ? match[1] : undefined;
 };
 
+// Debounce TikTok event tracking (only send once per email per session)
+const sentTikTokEvents = new Set<string>();
+
 // Send TikTok server-side event
 const sendTikTokEvent = async (email: string) => {
+  // Prevent duplicate events for same email in session
+  const emailHash = email.toLowerCase().trim();
+  if (sentTikTokEvents.has(emailHash)) {
+    console.log('TikTok event already sent for this email');
+    return;
+  }
+  sentTikTokEvents.add(emailHash);
+
   try {
     const response = await supabase.functions.invoke('tiktok-event', {
       body: {
