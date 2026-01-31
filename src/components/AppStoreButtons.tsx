@@ -18,8 +18,21 @@ const getTTPCookie = (): string | undefined => {
   return match ? match[1] : undefined;
 };
 
+// Debounce tracking to prevent spam (1 request per store per 5 seconds)
+const trackingCooldowns = new Map<string, number>();
+const TRACKING_COOLDOWN_MS = 5000;
+
 // Track download click for analytics and TikTok
 const trackDownloadClick = async (store: 'app_store' | 'google_play') => {
+  // Check cooldown to prevent spam
+  const lastTracked = trackingCooldowns.get(store) || 0;
+  const now = Date.now();
+  if (now - lastTracked < TRACKING_COOLDOWN_MS) {
+    console.log(`Tracking cooldown active for ${store}`);
+    return;
+  }
+  trackingCooldowns.set(store, now);
+
   try {
     // Track for analytics (country detection happens server-side)
     await supabase.functions.invoke('track-download', {
