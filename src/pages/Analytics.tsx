@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
-import { Apple, Download, Globe, TrendingUp } from "lucide-react";
+import { Apple, Download, Globe, TrendingUp, ShieldAlert } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ClickData {
   id: string;
@@ -21,24 +24,40 @@ const PlayStoreIcon = () => (
 );
 
 export default function Analytics() {
+  const { user, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
   const [clicks, setClicks] = useState<ClickData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
   useEffect(() => {
-    fetchClicks();
-  }, []);
+    if (!authLoading && !user) {
+      navigate('/auth');
+      return;
+    }
+    
+    if (user) {
+      checkAdminAndFetch();
+    }
+  }, [authLoading, user, navigate]);
 
-  const fetchClicks = async () => {
+  const checkAdminAndFetch = async () => {
+    // Check if user is admin using the has_role function via RPC or by trying to fetch data
     const { data, error } = await supabase
       .from('download_clicks')
       .select('*')
       .order('clicked_at', { ascending: false });
 
     if (error) {
-      console.error('Error fetching clicks:', error);
-    } else {
-      setClicks(data || []);
+      // If error, user is not admin (RLS blocked)
+      console.error('Access denied:', error.message);
+      setIsAdmin(false);
+      setLoading(false);
+      return;
     }
+    
+    setIsAdmin(true);
+    setClicks(data || []);
     setLoading(false);
   };
 
@@ -77,10 +96,25 @@ export default function Analytics() {
     .slice(0, 30)
     .reverse();
 
-  if (loading) {
+  if (loading || authLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (isAdmin === false) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center max-w-md px-4">
+          <ShieldAlert className="h-16 w-16 text-destructive mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-foreground mb-2">Access Denied</h1>
+          <p className="text-muted-foreground mb-6">
+            You don't have permission to view analytics. This page is restricted to administrators only.
+          </p>
+          <Button onClick={() => navigate('/')}>Go Home</Button>
+        </div>
       </div>
     );
   }

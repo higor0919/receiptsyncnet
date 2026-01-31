@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowLeft, MessageSquare, Reply, User, Calendar, Clock } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
+import DOMPurify from 'dompurify';
 
 interface Post {
   id: string;
@@ -330,7 +331,7 @@ const BlogPost = () => {
           </div>
           <div 
             className="prose prose-neutral dark:prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
           />
         </article>
 
