@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 
-import appCameraImage from "@/assets/app-camera.png";
-import appHomeImage from "@/assets/app-home.png";
-import appAnalyticsImage from "@/assets/app-analytics.png";
-import appSuccessImage from "@/assets/app-success.png";
+import enhancedCameraScan from "@/assets/enhanced-camera-scan.png";
+import enhancedHomeScreen from "@/assets/enhanced-home-screen.png";
+import enhancedAnalytics from "@/assets/enhanced-analytics.png";
+import enhancedReceiptHistory from "@/assets/enhanced-receipt-history.png";
 import sheetsMockup from "@/assets/sheets-mockup.png";
 
 const AppShowcase = () => {
@@ -25,9 +25,9 @@ const AppShowcase = () => {
           <div className="flex-1 flex justify-center lg:justify-end">
             <div className="relative max-w-sm">
               <img
-                src={appCameraImage}
+                src={enhancedCameraScan}
                 alt="ReceiptSync scanning interface"
-                className="w-full h-auto drop-shadow-2xl"
+                className="w-full h-auto drop-shadow-2xl rounded-3xl"
                 loading="lazy"
               />
             </div>
@@ -47,15 +47,15 @@ const AppShowcase = () => {
           <div className="flex-1 flex justify-center lg:justify-start">
             <div className="relative flex gap-4 items-end">
               <img
-                src={appHomeImage}
+                src={enhancedHomeScreen}
                 alt="ReceiptSync home screen"
-                className="w-48 md:w-56 h-auto drop-shadow-2xl"
+                className="w-56 md:w-64 h-auto drop-shadow-2xl rounded-3xl"
                 loading="lazy"
               />
               <img
-                src={appAnalyticsImage}
+                src={enhancedAnalytics}
                 alt="ReceiptSync analytics view"
-                className="w-40 md:w-48 h-auto drop-shadow-2xl -ml-8"
+                className="w-48 md:w-56 h-auto drop-shadow-2xl rounded-3xl -ml-12"
                 loading="lazy"
               />
             </div>
@@ -97,9 +97,9 @@ const AppShowcase = () => {
           <div className="flex-1 flex justify-center lg:justify-start">
             <div className="relative max-w-sm">
               <img
-                src={appSuccessImage}
+                src={enhancedReceiptHistory}
                 alt="Receipt saved success screen"
-                className="w-full h-auto drop-shadow-2xl"
+                className="w-full h-auto drop-shadow-2xl rounded-3xl"
                 loading="lazy"
               />
             </div>
