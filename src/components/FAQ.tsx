@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronDown } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const FAQ = () => {
   const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   const faqs = [
     { questionKey: "faq.q1.question", answerKey: "faq.q1.answer" },
@@ -26,12 +29,33 @@ const FAQ = () => {
   return (
     <section
       id="faq"
-      className="py-24"
+      ref={sectionRef}
+      className="py-24 relative overflow-hidden"
       style={{ backgroundColor: "hsl(240,82%,18%)" }}
     >
-      <div className="container mx-auto px-6 max-w-4xl">
-        {/* Section header */}
-        <div className="text-center mb-16">
+      {/* Background grid pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-5"
+        style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      {/* Ambient glow */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full blur-3xl pointer-events-none opacity-10"
+        style={{ background: "hsl(327,100%,59%)" }}
+      />
+
+      <div className="container mx-auto px-6 max-w-4xl relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-5xl font-black mb-5 text-white leading-tight">
             Frequently Asked{" "}
             <span style={{ color: "hsl(327,100%,59%)" }}>Questions</span>
@@ -39,83 +63,107 @@ const FAQ = () => {
           <p className="text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
             {t("faq.subtitle")}
           </p>
-        </div>
+        </motion.div>
 
         {/* FAQ items */}
         <div className="space-y-3">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="rounded-2xl overflow-hidden transition-all duration-200"
-              style={{
-                backgroundColor: openIndex === index
-                  ? "hsl(240,82%,22%)"
-                  : "hsl(240,82%,20%)",
-                border: openIndex === index
-                  ? "1px solid hsla(327,100%,59%,0.3)"
-                  : "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              <button
-                className="w-full flex items-center justify-between p-6 text-left"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.05 * index }}
+                className="rounded-2xl overflow-hidden"
+                style={{
+                  backgroundColor: isOpen ? "hsl(240,82%,22%)" : "hsl(240,82%,20%)",
+                  border: isOpen ? "1px solid hsla(327,100%,59%,0.35)" : "1px solid rgba(255,255,255,0.07)",
+                  boxShadow: isOpen ? "0 8px 30px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)" : "none",
+                  transition: "background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+                }}
               >
-                <span className="font-bold text-white pr-4">
-                  {t(faq.questionKey)}
-                </span>
-                <ChevronDown
-                  className="flex-shrink-0 w-5 h-5 transition-transform duration-200"
-                  style={{
-                    color: openIndex === index ? "hsl(327,100%,59%)" : "rgba(255,255,255,0.5)",
-                    transform: openIndex === index ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
-                />
-              </button>
-              {openIndex === index && (
-                <div
-                  className="px-6 pb-6 text-sm leading-relaxed"
-                  style={{ color: "rgba(255,255,255,0.7)" }}
+                <button
+                  className="w-full flex items-center justify-between p-6 text-left group"
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
-                  {t(faq.answerKey)}
-                </div>
-              )}
-            </div>
-          ))}
+                  <span
+                    className="font-bold pr-4 transition-colors duration-200"
+                    style={{ color: isOpen ? "white" : "rgba(255,255,255,0.85)" }}
+                  >
+                    {t(faq.questionKey)}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
+                    style={{
+                      backgroundColor: isOpen ? "hsla(327,100%,59%,0.2)" : "rgba(255,255,255,0.06)",
+                      border: isOpen ? "1px solid hsla(327,100%,59%,0.3)" : "1px solid rgba(255,255,255,0.1)",
+                    }}
+                  >
+                    <ChevronDown
+                      className="w-4 h-4"
+                      style={{ color: isOpen ? "hsl(327,100%,59%)" : "rgba(255,255,255,0.5)" }}
+                    />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <div
+                        className="px-6 pb-6 text-sm leading-relaxed"
+                        style={{
+                          color: "rgba(255,255,255,0.7)",
+                          borderTop: "1px solid rgba(255,255,255,0.06)",
+                          paddingTop: "16px",
+                        }}
+                      >
+                        {t(faq.answerKey)}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Still have questions CTA */}
-        <div
-          className="mt-12 p-8 rounded-3xl text-center"
+        {/* Contact CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-center mt-14 p-8 rounded-3xl"
           style={{
-            backgroundColor: "hsl(240,82%,22%)",
-            border: "1px solid rgba(255,255,255,0.1)",
+            background: "hsla(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.08)",
           }}
         >
-          <h3 className="text-xl font-bold text-white mb-2">
-            {t("faq.stillHaveQuestions")}
-          </h3>
-          <p className="mb-6" style={{ color: "rgba(255,255,255,0.65)" }}>
+          <h3 className="text-xl font-bold text-white mb-2">Still have questions?</h3>
+          <p className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.6)" }}>
             {"Can't find what you're looking for? Our team is happy to help."}
           </p>
-          <a
-            href="mailto:receiptsync@gmail.com"
-            className="inline-block py-3 px-8 rounded-full font-bold transition-all"
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-block px-8 py-3 rounded-full font-bold text-sm text-white"
             style={{
-              backgroundColor: "hsl(327,100%,59%)",
-              color: "white",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,50%)";
-              (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 25px hsla(327,100%,59%,0.4)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,59%)";
-              (e.currentTarget as HTMLElement).style.boxShadow = "none";
+              background: "linear-gradient(135deg, hsl(327,100%,59%), hsl(280,100%,60%))",
+              boxShadow: "0 4px 20px hsla(327,100%,59%,0.4)",
             }}
           >
-            {"Contact Support"}
-          </a>
-        </div>
+            Contact Support
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
