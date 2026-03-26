@@ -16,9 +16,7 @@ const Footer = () => {
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-xl overflow-hidden">
-                <img src={appIcon} alt="ReceiptSync" className="w-full h-full object-cover" />
-              </div>
+              <img src={appIcon} alt="ReceiptSync" className="w-9 h-9 rounded-xl object-contain" style={{background:"none"}} />
               <span className="text-white font-black text-lg">ReceiptSync</span>
             </Link>
             <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
