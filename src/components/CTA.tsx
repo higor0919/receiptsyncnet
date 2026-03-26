@@ -5,36 +5,40 @@ const CTA = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="relative overflow-hidden rounded-3xl gradient-primary p-12 md:p-16">
-            {/* Background decoration */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            
-            <div className="relative z-10 text-center text-white">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                {t('cta.title', 'Ready to Stop Wasting Time on Receipts?')}
-              </h2>
-              
-              <p className="text-xl md:text-2xl mb-8 opacity-90">
-                {t('cta.subtitle', 'Download now and automate your receipts instantly.')}
-              </p>
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-6 max-w-4xl">
+        <div
+          className="rounded-3xl p-12 text-center relative overflow-hidden"
+          style={{
+            backgroundColor: "hsl(240,82%,18%)",
+            boxShadow: "0 30px 80px hsla(240,82%,18%,0.3)",
+          }}
+        >
+          {/* Background decorative glow */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 100%, hsla(327,100%,59%,0.15) 0%, transparent 60%)",
+            }}
+          />
 
-              <div className="flex justify-center mb-6">
-                <AppStoreButtons variant="cta" />
-              </div>
+          <div className="relative z-10">
+            <h2 className="text-4xl md:text-5xl font-black mb-5 text-white leading-tight">
+              Ready to Stop Wasting Time on{" "}
+              <span style={{ color: "hsl(327,100%,59%)" }}>Receipts?</span>
+            </h2>
+            <p className="text-lg mb-10 max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>
+              {t("cta.subtitle")}
+            </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-white/90">
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center justify-center w-6 h-6 bg-white/20 rounded-full text-sm font-bold">✨</span>
-                  <span>{t('cta.freeToStart', 'Free to start')}</span>
-                </div>
-                <span className="hidden sm:inline text-white/50">•</span>
-                <span className="text-white/70">{t('cta.noCardRequired', 'No credit card required')}</span>
-              </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+              <AppStoreButtons variant="hero" />
             </div>
+
+            <p className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
+              ✨ {t("cta.freeToStart")} · {"No credit card required"}
+            </p>
           </div>
         </div>
       </div>

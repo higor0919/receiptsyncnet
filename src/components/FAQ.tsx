@@ -1,106 +1,120 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
 
 const FAQ = () => {
   const { t } = useTranslation();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
-    {
-      question: "What is ReceiptSync?",
-      answer: "ReceiptSync is an AI-powered mobile app that lets you scan receipts and automatically sync the extracted data to Google Sheets. Simply take a photo, and our AI extracts vendor, date, amount, and more—saving you hours of manual data entry."
-    },
-    {
-      question: t('faq.q1.question'),
-      answer: t('faq.q1.answer')
-    },
-    {
-      question: t('faq.q2.question'),
-      answer: t('faq.q2.answer')
-    },
-    {
-      question: t('faq.q3.question'),
-      answer: t('faq.q3.answer')
-    },
-    {
-      question: t('faq.q4.question'),
-      answer: t('faq.q4.answer')
-    },
-    {
-      question: t('faq.q5.question'),
-      answer: t('faq.q5.answer')
-    },
-    {
-      question: t('faq.q6.question'),
-      answer: t('faq.q6.answer')
-    },
-    {
-      question: t('faq.q7.question'),
-      answer: t('faq.q7.answer')
-    },
-    {
-      question: t('faq.q8.question'),
-      answer: t('faq.q8.answer')
-    },
-    {
-      question: t('faq.q9.question'),
-      answer: t('faq.q9.answer')
-    }
+    { questionKey: "faq.q1.question", answerKey: "faq.q1.answer" },
+    { questionKey: "faq.q2.question", answerKey: "faq.q2.answer" },
+    { questionKey: "faq.q3.question", answerKey: "faq.q3.answer" },
+    { questionKey: "faq.q4.question", answerKey: "faq.q4.answer" },
+    { questionKey: "faq.q5.question", answerKey: "faq.q5.answer" },
+    { questionKey: "faq.q6.question", answerKey: "faq.q6.answer" },
+    { questionKey: "faq.q7.question", answerKey: "faq.q7.answer" },
+    { questionKey: "faq.q8.question", answerKey: "faq.q8.answer" },
+    { questionKey: "faq.q9.question", answerKey: "faq.q9.answer" },
+    { questionKey: "faq.q10.question", answerKey: "faq.q10.answer" },
+    { questionKey: "faq.q11.question", answerKey: "faq.q11.answer" },
+    { questionKey: "faq.q12.question", answerKey: "faq.q12.answer" },
+    { questionKey: "faq.q13.question", answerKey: "faq.q13.answer" },
+    { questionKey: "faq.q14.question", answerKey: "faq.q14.answer" },
   ];
 
   return (
-    <section className="py-24 bg-background" id="faq">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16 animate-slide-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            {t('faq.title').split(' ').slice(0, -1).join(' ')}{" "}
-            <span className="bg-gradient-to-r from-secondary to-emerald-600 bg-clip-text text-transparent">
-              {t('faq.title').split(' ').slice(-1)}
-            </span>
+    <section
+      id="faq"
+      className="py-24"
+      style={{ backgroundColor: "hsl(240,82%,18%)" }}
+    >
+      <div className="container mx-auto px-6 max-w-4xl">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-black mb-5 text-white leading-tight">
+            Frequently Asked{" "}
+            <span style={{ color: "hsl(327,100%,59%)" }}>Questions</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
-            {t('faq.subtitle')}
+          <p className="text-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
+            {t("faq.subtitle")}
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
-                value={`item-${index}`}
-                className="border border-border rounded-lg px-6 bg-card animate-slide-up"
-                style={{ animationDelay: `${index * 0.05}s` }}
+        {/* FAQ items */}
+        <div className="space-y-3">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="rounded-2xl overflow-hidden transition-all duration-200"
+              style={{
+                backgroundColor: openIndex === index
+                  ? "hsl(240,82%,22%)"
+                  : "hsl(240,82%,20%)",
+                border: openIndex === index
+                  ? "1px solid hsla(327,100%,59%,0.3)"
+                  : "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              <button
+                className="w-full flex items-center justify-between p-6 text-left"
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
-                <AccordionTrigger className="text-left hover:no-underline py-6">
-                  <span className="font-semibold text-foreground pr-4">
-                    {faq.question}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                <span className="font-bold text-white pr-4">
+                  {t(faq.questionKey)}
+                </span>
+                <ChevronDown
+                  className="flex-shrink-0 w-5 h-5 transition-transform duration-200"
+                  style={{
+                    color: openIndex === index ? "hsl(327,100%,59%)" : "rgba(255,255,255,0.5)",
+                    transform: openIndex === index ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                />
+              </button>
+              {openIndex === index && (
+                <div
+                  className="px-6 pb-6 text-sm leading-relaxed"
+                  style={{ color: "rgba(255,255,255,0.7)" }}
+                >
+                  {t(faq.answerKey)}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
 
-          {/* Contact support */}
-          <div className="mt-12 text-center p-8 bg-muted/50 rounded-2xl">
-            <h3 className="text-xl font-semibold mb-2 text-foreground">
-              Still have questions?
-            </h3>
-            <p className="text-muted-foreground mb-4">
-              We'd love to hear from you
-            </p>
-            <Button variant="outline" size="lg" asChild>
-              <a href="mailto:receiptsync@gmail.com">{t('footer.contact')}</a>
-            </Button>
-          </div>
+        {/* Still have questions CTA */}
+        <div
+          className="mt-12 p-8 rounded-3xl text-center"
+          style={{
+            backgroundColor: "hsl(240,82%,22%)",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          <h3 className="text-xl font-bold text-white mb-2">
+            {t("faq.stillHaveQuestions")}
+          </h3>
+          <p className="mb-6" style={{ color: "rgba(255,255,255,0.65)" }}>
+            {"Can't find what you're looking for? Our team is happy to help."}
+          </p>
+          <a
+            href="mailto:receiptsync@gmail.com"
+            className="inline-block py-3 px-8 rounded-full font-bold transition-all"
+            style={{
+              backgroundColor: "hsl(327,100%,59%)",
+              color: "white",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,50%)";
+              (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 25px hsla(327,100%,59%,0.4)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,59%)";
+              (e.currentTarget as HTMLElement).style.boxShadow = "none";
+            }}
+          >
+            {"Contact Support"}
+          </a>
         </div>
       </div>
     </section>

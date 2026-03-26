@@ -10,15 +10,15 @@ const AppShowcase = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4 space-y-24 md:space-y-32">
         {/* Section 1: One-Tap Scanning */}
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           <div className="flex-1 text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-black mb-4" style={{color: "hsl(240,82%,18%)"}}>
               {t("features.instantCapture.title")}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-md">
+            <p className="text-lg max-w-md" style={{color: "hsl(240,10%,46%)"}}>
               {t("features.instantCapture.description")}
             </p>
           </div>
@@ -37,10 +37,10 @@ const AppShowcase = () => {
         {/* Section 2: AI-Powered Extraction */}
         <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
           <div className="flex-1 text-left lg:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-black mb-4" style={{color: "hsl(240,82%,18%)"}}>
               {t("features.aiExtraction.title")}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-md">
+            <p className="text-lg max-w-md" style={{color: "hsl(240,10%,46%)"}}>
               {t("features.aiExtraction.description")}
             </p>
           </div>
@@ -65,10 +65,10 @@ const AppShowcase = () => {
         {/* Section 3: Real-Time Google Sheets Sync */}
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           <div className="flex-1 text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-black mb-4" style={{color: "hsl(240,82%,18%)"}}>
               {t("features.googleSheets.title")}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-md">
+            <p className="text-lg max-w-md" style={{color: "hsl(240,10%,46%)"}}>
               {t("features.googleSheets.description")}
             </p>
           </div>
@@ -87,10 +87,10 @@ const AppShowcase = () => {
         {/* Section 4: Simple Onboarding */}
         <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
           <div className="flex-1 text-left lg:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-black mb-4" style={{color: "hsl(240,82%,18%)"}}>
               {t("features.fastSetup.title")}
             </h2>
-            <p className="text-lg text-muted-foreground max-w-md">
+            <p className="text-lg max-w-md" style={{color: "hsl(240,10%,46%)"}}>
               {t("features.fastSetup.description")}
             </p>
           </div>

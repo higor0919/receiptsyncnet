@@ -12,62 +12,32 @@ const PlayStoreIcon = () => (
   </svg>
 );
 
-// Get TTP cookie for TikTok tracking
 const getTTPCookie = (): string | undefined => {
   const match = document.cookie.match(/(?:^|; )_ttp=([^;]*)/);
   return match ? match[1] : undefined;
 };
 
-// Debounce tracking to prevent spam (1 request per store per 5 seconds)
 const trackingCooldowns = new Map<string, number>();
 const TRACKING_COOLDOWN_MS = 5000;
 
-// Track download click for analytics and TikTok
-const trackDownloadClick = async (store: 'app_store' | 'google_play') => {
-  // Check cooldown to prevent spam
+const trackDownloadClick = async (store: "app_store" | "google_play") => {
   const lastTracked = trackingCooldowns.get(store) || 0;
   const now = Date.now();
-  if (now - lastTracked < TRACKING_COOLDOWN_MS) {
-    console.log(`Tracking cooldown active for ${store}`);
-    return;
-  }
+  if (now - lastTracked < TRACKING_COOLDOWN_MS) return;
   trackingCooldowns.set(store, now);
-
   try {
-    // Track for analytics (country detection happens server-side)
-    await supabase.functions.invoke('track-download', {
-      body: {
-        store_type: store,
-        user_agent: navigator.userAgent,
-        referrer: document.referrer || null,
-      },
+    await supabase.functions.invoke("track-download", {
+      body: { store_type: store, user_agent: navigator.userAgent, referrer: document.referrer || null },
     });
-
-    // Also send TikTok event
-    await supabase.functions.invoke('tiktok-event', {
-      body: {
-        event: 'Download',
-        url: window.location.href,
-        userAgent: navigator.userAgent,
-        ttp: getTTPCookie(),
-        content_name: store === 'app_store' ? 'App Store Download' : 'Google Play Download',
-      },
-    });
-    
-    console.log(`Download tracked for ${store}`);
   } catch (error) {
-    console.error('Failed to track download:', error);
+    console.error("Failed to track download:", error);
   }
 };
 
 const AppStoreButtons = ({ variant = "hero" }: AppStoreButtonsProps) => {
   const { t } = useTranslation();
-
   const appStoreUrl = "https://apps.apple.com/us/app/receiptsync-receipt-tracker/id6756007251";
   const playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.receipt_sync";
-
-  const handleAppStoreClick = () => trackDownloadClick('app_store');
-  const handlePlayStoreClick = () => trackDownloadClick('google_play');
 
   if (variant === "navbar") {
     return (
@@ -75,25 +45,16 @@ const AppStoreButtons = ({ variant = "hero" }: AppStoreButtonsProps) => {
         href={appStoreUrl}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={handleAppStoreClick}
-        className="gradient-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+        onClick={() => trackDownloadClick("app_store")}
+        className="text-sm font-bold px-5 py-2 rounded-full transition-all"
+        style={{ backgroundColor: "hsl(327,100%,59%)", color: "white" }}
       >
-        {t('nav.downloadApp', 'Download App')}
+        {t("nav.downloadApp", "Download App")}
       </a>
     );
   }
 
-  const buttonBaseClass = variant === "cta"
-    ? "flex items-center gap-3 px-6 py-4 rounded-xl font-medium transition-all hover:scale-105"
-    : "flex items-center gap-3 px-5 py-3 rounded-xl font-medium transition-all hover:scale-105";
-
-  const appStoreClass = variant === "cta"
-    ? `${buttonBaseClass} bg-white text-primary`
-    : `${buttonBaseClass} bg-foreground text-background`;
-
-  const playStoreClass = variant === "cta"
-    ? `${buttonBaseClass} bg-white/20 text-white border border-white/30`
-    : `${buttonBaseClass} bg-background text-foreground border border-border`;
+  const isOnDark = variant === "hero" || variant === "cta";
 
   return (
     <div className="flex flex-col sm:flex-row gap-3">
@@ -101,26 +62,32 @@ const AppStoreButtons = ({ variant = "hero" }: AppStoreButtonsProps) => {
         href={appStoreUrl}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={handleAppStoreClick}
-        className={appStoreClass}
+        onClick={() => trackDownloadClick("app_store")}
+        className="flex items-center gap-3 px-6 py-3.5 rounded-full font-bold transition-all"
+        style={{ backgroundColor: "hsl(327,100%,59%)", color: "white" }}
       >
-        <Apple className="w-6 h-6" />
+        <Apple className="w-5 h-5 flex-shrink-0" />
         <div className="flex flex-col items-start">
-          <span className="text-xs opacity-80">{t('download.downloadOn', 'Download on the')}</span>
-          <span className="text-sm font-semibold">{t('download.appStore', 'App Store')}</span>
+          <span className="text-xs opacity-80">{t("download.downloadOn", "Download on the")}</span>
+          <span className="text-sm font-bold">{t("download.appStore", "App Store")}</span>
         </div>
       </a>
       <a
         href={playStoreUrl}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={handlePlayStoreClick}
-        className={playStoreClass}
+        onClick={() => trackDownloadClick("google_play")}
+        className="flex items-center gap-3 px-6 py-3.5 rounded-full font-bold transition-all"
+        style={{
+          backgroundColor: "transparent",
+          color: isOnDark ? "white" : "hsl(240,82%,18%)",
+          border: isOnDark ? "2px solid rgba(255,255,255,0.4)" : "2px solid hsl(240,82%,18%)",
+        }}
       >
         <PlayStoreIcon />
         <div className="flex flex-col items-start">
-          <span className="text-xs opacity-80">{t('download.getItOn', 'Get it on')}</span>
-          <span className="text-sm font-semibold">{t('download.googlePlay', 'Google Play')}</span>
+          <span className="text-xs opacity-80">{t("download.getItOn", "Get it on")}</span>
+          <span className="text-sm font-bold">{t("download.googlePlay", "Google Play")}</span>
         </div>
       </a>
     </div>

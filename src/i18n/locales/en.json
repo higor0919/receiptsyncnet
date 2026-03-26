@@ -48,6 +48,18 @@
     "fastSetup": {
       "title": "Simple Onboarding",
       "description": "Connect your Google account, select your spreadsheet, and you're ready. Set up in 2 minutes, save hours every month."
+    },
+    "recurring": {
+      "title": "Recurring Expenses",
+      "description": "Automatically track recurring expenses and subscriptions. Get alerts when patterns change."
+    },
+    "budget": {
+      "title": "Budget Tracking",
+      "description": "Set monthly budgets by category and get real-time insights on your spending habits."
+    },
+    "export": {
+      "title": "Export Reports",
+      "description": "Export your receipt data as CSV or PDF for tax season, expense reports, or accounting."
     }
   },
   "howItWorks": {
@@ -142,14 +154,39 @@
     "q9": {
       "question": "How can I stay updated on the launch?",
       "answer": "Join our waitlist above! We'll send you updates on our progress and notify you immediately when ReceiptSync is ready. You can also reach us at receiptsync@gmail.com for any questions."
-    }
+    },
+    "q10": {
+      "question": "Is my data secure?",
+      "answer": "Yes. All data is encrypted in transit and at rest. We use industry-standard security practices and never share your data with third parties."
+    },
+    "q11": {
+      "question": "Can I export my receipt data?",
+      "answer": "Yes! Pro users can export their receipt data as CSV or PDF at any time. Your data is always yours to keep."
+    },
+    "q12": {
+      "question": "What currencies are supported?",
+      "answer": "ReceiptSync supports all major currencies and automatically detects the currency from your receipt."
+    },
+    "q13": {
+      "question": "How many receipts can I scan per month?",
+      "answer": "Free users can scan up to 10 receipts per month. Pro users get unlimited scanning."
+    },
+    "q14": {
+      "question": "Is there a family or team plan?",
+      "answer": "We are working on team plans! Sign up for the waitlist to be notified when team plans become available."
+    },
+    "contactSubtitle": "Can't find what you're looking for? Our team is happy to help.",
+    "contactButton": "Contact Support",
+    "titleHighlight": ""
   },
   "cta": {
     "title": "Ready to Stop Wasting Time on Receipts?",
     "subtitle": "Download now and automate your receipts instantly.",
     "downloadApp": "Download App",
     "freeToStart": "Free to start",
-    "noCardRequired": "No credit card required"
+    "noCardRequired": "No credit card required",
+    "titleHighlight": "",
+    "noCreditCard": "No credit card required"
   },
   "download": {
     "downloadOn": "Download on the",

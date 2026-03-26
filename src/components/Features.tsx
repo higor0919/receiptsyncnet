@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Camera, Sparkles, Sheet, Rocket } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Camera, Sparkles, Sheet, Rocket, RefreshCw, PieChart, FileDown } from "lucide-react";
 
 const Features = () => {
   const { t } = useTranslation();
@@ -8,64 +7,120 @@ const Features = () => {
   const features = [
     {
       icon: Camera,
-      titleKey: 'features.instantCapture.title',
-      descriptionKey: 'features.instantCapture.description',
-      gradient: "from-primary to-purple-600"
+      titleKey: "features.instantCapture.title",
+      descriptionKey: "features.instantCapture.description",
+      isPro: false,
     },
     {
       icon: Sparkles,
-      titleKey: 'features.aiExtraction.title',
-      descriptionKey: 'features.aiExtraction.description',
-      gradient: "from-secondary to-emerald-600"
+      titleKey: "features.aiExtraction.title",
+      descriptionKey: "features.aiExtraction.description",
+      isPro: false,
     },
     {
       icon: Sheet,
-      titleKey: 'features.googleSheets.title',
-      descriptionKey: 'features.googleSheets.description',
-      gradient: "from-blue-500 to-cyan-500"
+      titleKey: "features.googleSheets.title",
+      descriptionKey: "features.googleSheets.description",
+      isPro: false,
     },
     {
       icon: Rocket,
-      titleKey: 'features.fastSetup.title',
-      descriptionKey: 'features.fastSetup.description',
-      gradient: "from-orange-500 to-red-500"
-    }
+      titleKey: "features.fastSetup.title",
+      descriptionKey: "features.fastSetup.description",
+      isPro: false,
+    },
+    {
+      icon: RefreshCw,
+      titleKey: "features.recurring.title",
+      descriptionKey: "features.recurring.description",
+      isPro: true,
+    },
+    {
+      icon: PieChart,
+      titleKey: "features.budget.title",
+      descriptionKey: "features.budget.description",
+      isPro: true,
+    },
+    {
+      icon: FileDown,
+      titleKey: "features.export.title",
+      descriptionKey: "features.export.description",
+      isPro: true,
+    },
   ];
 
   return (
-    <section id="features" className="py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16 animate-slide-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            {t('features.title')}{" "}
-            <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              {t('features.titleHighlight')}
-            </span>
+    <section id="features" className="py-24 bg-white">
+      <div className="container mx-auto px-6 max-w-6xl">
+        {/* Section header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2
+            className="text-4xl md:text-5xl font-black mb-5 leading-tight"
+            style={{ color: "hsl(240,82%,18%)" }}
+          >
+            {t("features.title")}{" "}
+            <span style={{ color: "hsl(327,100%,59%)" }}>{t("features.titleHighlight")}</span>
           </h2>
-          <p className="text-xl text-muted-foreground">
-            {t('features.subtitle')}
+          <p className="text-lg" style={{ color: "hsl(240,10%,46%)" }}>
+            {t("features.subtitle")}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Features grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <Card 
+            <div
               key={index}
-              className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-card border-border animate-slide-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 cursor-default relative"
+              style={{
+                backgroundColor: "white",
+                borderColor: "hsl(240,10%,90%)",
+                boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 40px rgba(0,0,0,0.12)";
+                (e.currentTarget as HTMLElement).style.borderColor = "hsl(327,100%,80%)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.06)";
+                (e.currentTarget as HTMLElement).style.borderColor = "hsl(240,10%,90%)";
+              }}
             >
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4`}>
-                <feature.icon className="w-7 h-7 text-white" />
+              {/* Pro badge */}
+              {feature.isPro && (
+                <span
+                  className="absolute top-4 right-4 text-xs font-bold px-2.5 py-0.5 rounded-full"
+                  style={{
+                    backgroundColor: "hsl(327,100%,95%)",
+                    color: "hsl(327,100%,45%)",
+                  }}
+                >
+                  Pro
+                </span>
+              )}
+
+              {/* Icon */}
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5"
+                style={{ backgroundColor: "hsl(327,100%,96%)" }}
+              >
+                <feature.icon
+                  className="w-7 h-7"
+                  style={{ color: "hsl(327,100%,59%)" }}
+                />
               </div>
-              
-              <h3 className="text-xl font-bold mb-3 text-foreground">
+
+              <h3
+                className="text-lg font-bold mb-3"
+                style={{ color: "hsl(240,82%,18%)" }}
+              >
                 {t(feature.titleKey)}
               </h3>
-              
-              <p className="text-muted-foreground leading-relaxed">
+
+              <p className="text-sm leading-relaxed" style={{ color: "hsl(240,10%,46%)" }}>
                 {t(feature.descriptionKey)}
               </p>
-            </Card>
+            </div>
           ))}
         </div>
       </div>

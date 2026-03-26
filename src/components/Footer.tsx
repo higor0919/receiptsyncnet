@@ -1,60 +1,151 @@
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import appIcon from "@/assets/app-icon.png";
 
 const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-muted/30 border-t border-border py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl overflow-hidden">
+    <footer style={{ backgroundColor: "hsl(240,82%,11%)" }}>
+      <div className="container mx-auto px-6 max-w-6xl">
+        {/* Main footer content */}
+        <div
+          className="py-16 grid grid-cols-2 md:grid-cols-4 gap-10"
+          style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+        >
+          {/* Brand column */}
+          <div className="col-span-2 md:col-span-1">
+            <Link to="/" className="flex items-center gap-2.5 mb-4">
+              <div className="w-9 h-9 rounded-xl overflow-hidden">
                 <img src={appIcon} alt="ReceiptSync" className="w-full h-full object-cover" />
               </div>
-              <span className="text-xl font-bold text-foreground">ReceiptSync</span>
-            </div>
-            <p className="text-muted-foreground max-w-sm">
-              {t('footer.tagline')}
+              <span className="text-white font-black text-lg">ReceiptSync</span>
+            </Link>
+            <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
+              AI-powered receipt scanning that syncs directly to Google Sheets. Save hours every month.
             </p>
+            <div className="flex gap-3">
+              <a
+                href="#download"
+                className="text-xs font-bold px-4 py-2 rounded-full transition-all"
+                style={{
+                  backgroundColor: "hsl(327,100%,59%)",
+                  color: "white",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,50%)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,59%)";
+                }}
+              >
+                Download App
+              </a>
+            </div>
           </div>
 
-          {/* Product */}
+          {/* Product links */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">{t('footer.product')}</h4>
-            <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#features" className="hover:text-primary transition-colors">{t('footer.features')}</a></li>
-              <li><a href="#pricing" className="hover:text-primary transition-colors">{t('footer.pricing')}</a></li>
-              <li><a href="#faq" className="hover:text-primary transition-colors">{t('footer.faq')}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Download</a></li>
+            <h4 className="text-white font-bold mb-5 text-sm uppercase tracking-wider">
+              Product
+            </h4>
+            <ul className="space-y-3">
+              {[
+                { href: "#features", label: t("nav.features") },
+                { href: "#pricing", label: "Pricing" },
+                { href: "#how-it-works", label: t("nav.howItWorks") },
+                { href: "#faq", label: t("nav.faq") },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-sm transition-colors"
+                    style={{ color: "rgba(255,255,255,0.5)" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(327,100%,70%)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Company links */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">{t('footer.support')}</h4>
-            <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">About</a></li>
-              <li><Link to="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-              <li><Link to="/analytics" className="hover:text-primary transition-colors">Analytics</Link></li>
-              <li><a href="mailto:receiptsync@gmail.com" className="hover:text-primary transition-colors">{t('footer.contact')}</a></li>
+            <h4 className="text-white font-bold mb-5 text-sm uppercase tracking-wider">
+              Company
+            </h4>
+            <ul className="space-y-3">
+              {[
+                { href: "/blog", label: "Blog", isLink: true },
+                { href: "mailto:receiptsync@gmail.com", label: "Contact", isLink: false },
+                { href: "#download", label: "Download", isLink: false },
+              ].map((link) => (
+                <li key={link.href}>
+                  {link.isLink ? (
+                    <Link
+                      to={link.href}
+                      className="text-sm transition-colors"
+                      style={{ color: "rgba(255,255,255,0.5)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(327,100%,70%)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="text-sm transition-colors"
+                      style={{ color: "rgba(255,255,255,0.5)" }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(327,100%,70%)")}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
+                    >
+                      {link.label}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal links */}
+          <div>
+            <h4 className="text-white font-bold mb-5 text-sm uppercase tracking-wider">
+              Legal
+            </h4>
+            <ul className="space-y-3">
+              {[
+                { href: "/privacy", label: t("footer.privacyPolicy") },
+                { href: "/terms", label: t("footer.termsOfService") },
+                { href: "/cookies", label: "Cookie Policy" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="text-sm transition-colors"
+                    style={{ color: "rgba(255,255,255,0.5)" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(327,100%,70%)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © 2024 ReceiptSync. {t('footer.allRightsReserved')}
+        {/* Bottom bar */}
+        <div className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
+            © {new Date().getFullYear()} ReceiptSync. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link to="/privacy-policy" className="hover:text-primary transition-colors">{t('footer.privacyPolicy')}</Link>
-            <a href="#" className="hover:text-primary transition-colors">{t('footer.termsOfService')}</a>
-            <a href="#" className="hover:text-primary transition-colors">Cookie Policy</a>
-          </div>
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
+            Made with{" "}
+            <span style={{ color: "hsl(327,100%,59%)" }}>♥</span>
+            {" "}for busy people everywhere
+          </p>
         </div>
       </div>
     </footer>

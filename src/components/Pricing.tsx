@@ -1,185 +1,215 @@
 import { useTranslation } from "react-i18next";
-import { Card } from "@/components/ui/card";
-import { Check, Gift, Sparkles, Crown } from "lucide-react";
-import Waitlist from "@/components/Waitlist";
+import { Check } from "lucide-react";
+import AppStoreButtons from "@/components/AppStoreButtons";
 
 const Pricing = () => {
   const { t } = useTranslation();
 
-  const features = [
-    t('pricing.features.unlimited', 'Unlimited receipt scanning'),
-    t('pricing.features.ai', 'AI-powered data extraction'),
-    t('pricing.features.sync', 'Real-time Google Sheets sync'),
-    t('pricing.features.categories', 'Automatic categorization'),
-    t('pricing.features.cloud', 'Cloud storage for receipts'),
-    t('pricing.features.access', 'Mobile & web access'),
-    t('pricing.features.export', 'Export to CSV/PDF'),
-    t('pricing.features.support', 'Priority email support')
+  const freeFeatures = [
+    t("pricing.features.unlimited"),
+    t("pricing.features.cloud"),
+    t("pricing.features.sync"),
+    t("pricing.features.categories"),
+    t("pricing.features.access"),
   ];
 
-  const annualPerks = [
-    t('pricing.perks.updates', 'All future updates included'),
-    t('pricing.perks.priority', 'Priority feature requests'),
-    t('pricing.perks.badge', 'Exclusive early adopter badge'),
-    t('pricing.perks.community', 'Early access community')
+  const proFeatures = [
+    t("pricing.features.unlimited"),
+    t("pricing.features.ai"),
+    t("pricing.features.access"),
+    t("pricing.features.categories"),
+    t("pricing.features.cloud"),
+    t("pricing.features.access"),
+    t("pricing.features.export"),
+    t("pricing.features.support"),
   ];
 
   return (
-    <section className="py-24 bg-muted/30" id="pricing">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16 animate-slide-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            {t('pricing.title', 'Simple')}{" "}
-            <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              {t('pricing.titleHighlight', 'Pricing')}
-            </span>
+    <section id="pricing" className="py-24 bg-white">
+      <div className="container mx-auto px-6 max-w-6xl">
+        {/* Section header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <h2
+            className="text-4xl md:text-5xl font-black mb-5 leading-tight"
+            style={{ color: "hsl(240,82%,18%)" }}
+          >
+            {t("pricing.title")}{" "}
+            <span style={{ color: "hsl(327,100%,59%)" }}>{t("pricing.titleHighlight") || "Pricing"}</span>
           </h2>
-          <p className="text-xl text-muted-foreground mb-4">
-            {t('pricing.subtitle', 'Choose the plan that works best for you')}
+          <p className="text-lg" style={{ color: "hsl(240,10%,46%)" }}>
+            {t("pricing.subtitle")}
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+        {/* Pricing cards */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Monthly Plan */}
-          <Card className="p-8 relative overflow-hidden animate-slide-up border border-border" style={{ animationDelay: '0.1s' }}>
-            <div className="absolute top-0 right-0 w-48 h-48 bg-muted/50 rounded-full blur-3xl" />
-            
-            <div className="relative z-10">
-              <h3 className="text-2xl font-bold text-foreground mb-2">
-                {t('pricing.monthly', 'Monthly')}
+          <div
+            className="p-8 rounded-3xl border"
+            style={{
+              backgroundColor: "white",
+              borderColor: "hsl(240,10%,88%)",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
+            }}
+          >
+            <div className="mb-6">
+              <h3
+                className="text-xl font-bold mb-1"
+                style={{ color: "hsl(240,82%,18%)" }}
+              >
+                {t("pricing.monthly")}
               </h3>
-              <p className="text-muted-foreground mb-6">
-                {t('pricing.monthlyDesc', 'Perfect for getting started')}
+              <p className="text-sm" style={{ color: "hsl(240,10%,50%)" }}>
+                {t("pricing.monthlyDesc")}
               </p>
-
-              {/* Price */}
-              <div className="mb-8">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-bold text-foreground">
-                    $9.99
-                  </span>
-                  <span className="text-xl text-muted-foreground">
-                    {t('pricing.perMonth', '/month')}
-                  </span>
-                </div>
-                <p className="text-sm text-muted-foreground mt-2">
-                  {t('pricing.cancelAnytime', 'Cancel anytime')}
-                </p>
-              </div>
-
-              {/* CTA - Waitlist */}
-              <div className="mb-8">
-                <Waitlist variant="secondary" />
-              </div>
-
-              {/* Features List */}
-              <div className="space-y-4">
-                <p className="text-sm font-semibold text-foreground mb-4">
-                  {t('pricing.everythingYouNeed', 'Everything you need:')}
-                </p>
-                <div className="grid gap-3">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 text-muted-foreground" />
-                      </div>
-                      <span className="text-sm text-muted-foreground">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
-          </Card>
 
-          {/* Lifetime Deal */}
-          <Card className="p-8 relative overflow-hidden animate-slide-up border-2 border-primary/30 bg-gradient-to-b from-primary/5 to-transparent" style={{ animationDelay: '0.2s' }}>
-            {/* Background decoration */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-secondary/10 rounded-full blur-3xl" />
-            
-            <div className="relative z-10">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-6">
-                <Sparkles className="w-4 h-4" />
-                {t('pricing.bestValue', 'BEST VALUE')}
-              </div>
+            <div className="mb-8">
+              <span
+                className="text-5xl font-black"
+                style={{ color: "hsl(240,82%,18%)" }}
+              >
+                $9.99
+              </span>
+              <span className="text-lg ml-1" style={{ color: "hsl(240,10%,50%)" }}>
+                /month
+              </span>
+              <p className="text-sm mt-1" style={{ color: "hsl(240,10%,60%)" }}>
+                {t("pricing.cancelAnytime")}
+              </p>
+            </div>
 
-              {/* Plan Name */}
-              <h3 className="text-2xl font-bold text-foreground mb-2 flex items-center gap-2">
-                <Crown className="w-6 h-6 text-primary" />
-                {t('pricing.annual', 'Annual Deal')}
+            <a
+              href="#download"
+              className="block text-center py-3 px-6 rounded-full font-bold text-sm mb-8 transition-all"
+              style={{
+                border: "2px solid hsl(240,82%,18%)",
+                color: "hsl(240,82%,18%)",
+                backgroundColor: "transparent",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(240,82%,18%)";
+                (e.currentTarget as HTMLElement).style.color = "white";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+                (e.currentTarget as HTMLElement).style.color = "hsl(240,82%,18%)";
+              }}
+            >
+              {"Get Monthly Plan"}
+            </a>
+
+            <ul className="space-y-3">
+              {proFeatures.map((feature, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <div
+                    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: "hsl(240,82%,95%)" }}
+                  >
+                    <Check className="w-3 h-3" style={{ color: "hsl(240,82%,40%)" }} />
+                  </div>
+                  <span className="text-sm" style={{ color: "hsl(240,10%,40%)" }}>
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Annual Plan - Featured */}
+          <div
+            className="p-8 rounded-3xl relative overflow-hidden"
+            style={{
+              backgroundColor: "hsl(240,82%,18%)",
+              boxShadow: "0 20px 60px hsla(240,82%,18%,0.4), 0 0 40px hsla(327,100%,59%,0.1)",
+            }}
+          >
+            {/* Best value badge */}
+            <div className="absolute top-6 right-6">
+              <span
+                className="text-xs font-black px-3 py-1 rounded-full"
+                style={{
+                  backgroundColor: "hsl(327,100%,59%)",
+                  color: "white",
+                }}
+              >
+                BEST VALUE
+              </span>
+            </div>
+
+            <div className="mb-6">
+              <h3 className="text-xl font-bold mb-1 text-white">
+                {t("pricing.annual")}
               </h3>
-              <p className="text-muted-foreground mb-6">
-                {t('pricing.annualDesc', 'For the first 100 early access members')}
+              <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+                {t("pricing.annualDesc")}
               </p>
-
-              {/* Price */}
-              <div className="mb-8">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-5xl font-bold text-foreground">
-                    $39.99
-                  </span>
-                  <span className="text-xl text-muted-foreground">
-                    {t('pricing.perYear', '/year')}
-                  </span>
-                </div>
-                <p className="text-sm text-secondary mt-2 font-medium">
-                  {t('pricing.annualSavings', 'Just $3.33/month — Limited deal for first 100!')}
-                </p>
-              </div>
-
-              {/* Annual Perks */}
-              <div className="mb-8 p-5 bg-primary/5 rounded-xl border border-primary/20">
-                <p className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <Gift className="w-4 h-4 text-primary" />
-                  {t('pricing.exclusivePerks', 'Early adopter exclusive perks:')}
-                </p>
-                <div className="grid gap-3">
-                  {annualPerks.map((perk, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-primary" />
-                      </div>
-                      <span className="text-sm font-medium text-foreground">{perk}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA - Waitlist */}
-              <div className="mb-8">
-                <p className="text-sm text-muted-foreground mb-3 text-center">
-                  {t('pricing.joinToSecure', 'Join the waitlist to secure this price')}
-                </p>
-                <Waitlist />
-              </div>
-
-              {/* Features List */}
-              <div className="space-y-4">
-                <p className="text-sm font-semibold text-foreground mb-4">
-                  {t('pricing.fullAccess', 'Full access to all features:')}
-                </p>
-                <div className="grid gap-3">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 text-secondary" />
-                      </div>
-                      <span className="text-sm text-muted-foreground">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
-          </Card>
+
+            <div className="mb-8">
+              <span
+                className="text-5xl font-black text-white"
+              >
+                $39.99
+              </span>
+              <span className="text-lg ml-1" style={{ color: "rgba(255,255,255,0.6)" }}>
+                /year
+              </span>
+              <p
+                className="text-sm mt-1 font-bold"
+                style={{ color: "hsl(327,100%,70%)" }}
+              >
+                Just $3.33/month — Limited deal for first 100!
+              </p>
+            </div>
+
+            <a
+              href="#download"
+              className="block text-center py-3 px-6 rounded-full font-bold text-sm mb-8 transition-all"
+              style={{
+                backgroundColor: "hsl(327,100%,59%)",
+                color: "white",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,50%)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 25px hsla(327,100%,59%,0.5)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,59%)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "none";
+              }}
+            >
+              {"Get Annual Deal"}
+            </a>
+
+            <ul className="space-y-3">
+              {proFeatures.map((feature, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <div
+                    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: "hsla(327,100%,59%,0.25)" }}
+                  >
+                    <Check className="w-3 h-3" style={{ color: "hsl(327,100%,75%)" }} />
+                  </div>
+                  <span className="text-sm" style={{ color: "rgba(255,255,255,0.8)" }}>
+                    {feature}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Additional info */}
-        <div className="mt-12 text-center">
-          <p className="text-sm text-muted-foreground">
-            {t('pricing.questions', 'Have questions?')}{" "}
-            <a href="mailto:receiptsync@gmail.com" className="text-primary hover:underline font-medium">
-              {t('footer.contact', 'Contact us')}
+        {/* CTA below pricing */}
+        <div className="text-center mt-12">
+          <p className="text-sm mb-4" style={{ color: "hsl(240,10%,55%)" }}>
+            Have questions?{" "}
+            <a
+              href="mailto:receiptsync@gmail.com"
+              className="font-bold"
+              style={{ color: "hsl(327,100%,59%)" }}
+            >
+              Contact us
             </a>
           </p>
         </div>

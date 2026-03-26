@@ -1,92 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* JeevMedia-Inspired Design System
+   Primary Accent: Hot Pink/Magenta (HSL 327 100% 59%)
+   Dark Background: Deep Navy Blue (HSL 240 82% 18%)
+   Light Background: White
+   All colors MUST be HSL.
 */
 
 @layer base {
   :root {
+    /* Light sections */
     --background: 0 0% 100%;
-    --foreground: 240 10% 10%;
+    --foreground: 240 82% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
+    --card-foreground: 240 82% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
+    --popover-foreground: 240 82% 16%;
 
-    --primary: 262 83% 58%;
+    /* Hot pink as primary accent */
+    --primary: 327 100% 59%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 160 84% 39%;
+    /* Deep navy as secondary */
+    --secondary: 240 82% 24%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    --muted: 240 10% 96%;
+    --muted-foreground: 240 10% 46%;
 
-    --accent: 262 100% 97%;
-    --accent-foreground: 262 83% 58%;
+    --accent: 327 100% 96%;
+    --accent-foreground: 327 100% 45%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 262 83% 58%;
+    --border: 240 10% 88%;
+    --input: 240 10% 88%;
+    --ring: 327 100% 59%;
 
-    --radius: 1rem;
+    /* Pill-shaped buttons like JeevMedia */
+    --radius: 9999px;
 
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(280 83% 68%));
-    --gradient-secondary: linear-gradient(135deg, hsl(160 84% 39%), hsl(160 84% 49%));
-    --gradient-hero: linear-gradient(180deg, hsl(262 100% 99%), hsl(0 0% 100%));
+    /* Brand gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(327 100% 59%), hsl(300 100% 55%));
+    --gradient-secondary: linear-gradient(135deg, hsl(240 82% 24%), hsl(240 82% 35%));
+    --gradient-hero: linear-gradient(180deg, hsl(240 82% 18%), hsl(240 82% 14%));
+
+    /* Navy dark bg for sections */
+    --navy-bg: 240 82% 18%;
+    --navy-dark-bg: 240 82% 14%;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 240 10% 10%;
+    --background: 240 82% 14%;
     --foreground: 0 0% 100%;
-
-    --card: 240 10% 13%;
+    --card: 240 82% 18%;
     --card-foreground: 0 0% 100%;
-
-    --popover: 240 10% 13%;
+    --popover: 240 82% 18%;
     --popover-foreground: 0 0% 100%;
-
-    --primary: 262 83% 58%;
+    --primary: 327 100% 59%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 160 84% 39%;
+    --secondary: 240 82% 30%;
     --secondary-foreground: 0 0% 100%;
-
-    --muted: 240 5% 20%;
-    --muted-foreground: 240 5% 65%;
-
-    --accent: 240 5% 20%;
+    --muted: 240 20% 25%;
+    --muted-foreground: 240 10% 70%;
+    --accent: 240 20% 25%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 240 5% 20%;
-    --input: 240 5% 20%;
-    --ring: 262 83% 58%;
+    --border: 240 20% 30%;
+    --input: 240 20% 30%;
+    --ring: 327 100% 59%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -109,8 +108,8 @@ All colors MUST be HSL.
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 700;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 800;
   }
 }
 
@@ -125,6 +124,30 @@ All colors MUST be HSL.
   
   .gradient-hero {
     background: var(--gradient-hero);
+  }
+
+  /* JeevMedia dark navy section */
+  .section-navy {
+    background-color: hsl(240, 82%, 18%);
+    color: white;
+  }
+
+  .section-navy-dark {
+    background-color: hsl(240, 82%, 14%);
+    color: white;
+  }
+
+  /* Pink accent text */
+  .text-pink-accent {
+    color: hsl(327, 100%, 59%);
+  }
+
+  /* Step number - large pink */
+  .step-number {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: hsl(327, 100%, 59%);
+    line-height: 1;
   }
 
   .animate-float {

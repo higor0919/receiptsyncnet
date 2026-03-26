@@ -1,86 +1,153 @@
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import appIcon from "@/assets/app-icon.png";
+import { Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import appIcon from "@/assets/app-icon.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useTranslation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
-      <div className="container mx-auto px-4">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        backgroundColor: "hsl(240,82%,14%)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+      }}
+    >
+      <div className="container mx-auto px-6 max-w-6xl">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl overflow-hidden">
-              <img src={appIcon} alt="ReceiptSync app icon" className="w-full h-full object-cover" />
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-xl overflow-hidden">
+              <img src={appIcon} alt="ReceiptSync" className="w-full h-full object-cover" />
             </div>
-            <span className="text-xl font-bold text-foreground">ReceiptSync</span>
-          </div>
+            <span className="text-white font-black text-lg tracking-tight">ReceiptSync</span>
+          </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t('nav.features')}
-            </a>
-            <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t('nav.howItWorks')}
-            </a>
-            <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t('nav.faq')}
-            </a>
-            <Link to="/blog" className="text-foreground hover:text-primary transition-colors font-medium">
-              {t('nav.blog')}
+            {[
+              { href: "#features", label: t("nav.features") },
+              { href: "#how-it-works", label: t("nav.howItWorks") },
+              { href: "#pricing", label: "Pricing" },
+              { href: "#faq", label: t("nav.faq") },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium transition-colors hover:opacity-100"
+                style={{ color: "rgba(255,255,255,0.75)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(327,100%,70%)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+              >
+                {link.label}
+              </a>
+            ))}
+            <Link
+              to="/blog"
+              className="text-sm font-medium transition-colors"
+              style={{ color: "rgba(255,255,255,0.75)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "hsl(327,100%,70%)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+            >
+              {t("nav.blog")}
             </Link>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-2">
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center gap-3">
             <LanguageSwitcher />
-            <Button variant="ghost" asChild>
-              <a href="mailto:receiptsync@gmail.com">Contact Us</a>
-            </Button>
-            <Button className="gradient-primary" asChild>
-              <a href="#download">{t('nav.downloadApp')}</a>
-            </Button>
+            <a
+              href="mailto:receiptsync@gmail.com"
+              className="text-sm font-medium px-4 py-2 rounded-full transition-all"
+              style={{ color: "rgba(255,255,255,0.75)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+            >
+              Contact Us
+            </a>
+            <a
+              href="#download"
+              className="text-sm font-bold px-5 py-2 rounded-full transition-all"
+              style={{
+                backgroundColor: "hsl(327,100%,59%)",
+                color: "white",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,50%)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px hsla(327,100%,59%,0.4)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,59%)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "none";
+              }}
+            >
+              {t("nav.downloadApp")}
+            </a>
           </div>
 
           {/* Mobile: Language + Menu */}
           <div className="md:hidden flex items-center gap-2">
             <LanguageSwitcher />
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              <Menu className="w-6 h-6" />
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-white p-1"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
+          <div
+            className="md:hidden py-4"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
+          >
             <div className="flex flex-col gap-4">
-              <a href="#features" className="text-foreground hover:text-primary transition-colors font-medium">
-                {t('nav.features')}
-              </a>
-              <a href="#how-it-works" className="text-foreground hover:text-primary transition-colors font-medium">
-                {t('nav.howItWorks')}
-              </a>
-              <a href="#faq" className="text-foreground hover:text-primary transition-colors font-medium">
-                {t('nav.faq')}
-              </a>
-              <Link to="/blog" className="text-foreground hover:text-primary transition-colors font-medium">
-                {t('nav.blog')}
+              {[
+                { href: "#features", label: t("nav.features") },
+                { href: "#how-it-works", label: t("nav.howItWorks") },
+                { href: "#pricing", label: "Pricing" },
+                { href: "#faq", label: t("nav.faq") },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="font-medium"
+                  style={{ color: "rgba(255,255,255,0.8)" }}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+              <Link
+                to="/blog"
+                className="font-medium"
+                style={{ color: "rgba(255,255,255,0.8)" }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t("nav.blog")}
               </Link>
-              <div className="flex flex-col gap-2 pt-4">
-                <Button variant="ghost" className="w-full" asChild>
-                  <a href="mailto:receiptsync@gmail.com">Contact Us</a>
-                </Button>
-                <Button className="gradient-primary w-full" asChild>
-                  <a href="#download">{t('nav.downloadApp')}</a>
-                </Button>
+              <div className="flex flex-col gap-2 pt-2">
+                <a
+                  href="mailto:receiptsync@gmail.com"
+                  className="text-center py-2 rounded-full font-medium"
+                  style={{ color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.2)" }}
+                >
+                  Contact Us
+                </a>
+                <a
+                  href="#download"
+                  className="text-center py-2.5 rounded-full font-bold"
+                  style={{ backgroundColor: "hsl(327,100%,59%)", color: "white" }}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {t("nav.downloadApp")}
+                </a>
               </div>
             </div>
           </div>
