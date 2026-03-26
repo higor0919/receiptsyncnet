@@ -61,49 +61,36 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-3">
             <LanguageSwitcher />
             <a
-              href="mailto:receiptsync@gmail.com"
-              className="text-sm font-medium px-4 py-2 rounded-full transition-all"
-              style={{ color: "rgba(255,255,255,0.75)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
-            >
-              Contact Us
-            </a>
-            <a
               href="https://app.receiptsync.net/"
-              className="text-sm font-medium px-4 py-2 rounded-full transition-all"
-              style={{ color: "rgba(255,255,255,0.75)", border: "1px solid rgba(255,255,255,0.25)" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "white"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.6)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.75)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.25)"; }}
+              className="text-sm font-semibold px-5 py-2 rounded-full transition-all"
+              style={{ color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.3)" }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "white";
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.7)";
+                (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255,255,255,0.08)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.85)";
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.3)";
+                (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
+              }}
             >
               Log In to Portal
             </a>
             <a
               href="https://receiptsync.net/enterprise"
               className="text-sm font-bold px-5 py-2 rounded-full transition-all"
-              style={{ color: "hsl(327,100%,59%)", border: "2px solid hsl(327,100%,59%)" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "hsla(327,100%,59%,0.15)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px hsla(327,100%,59%,0.3)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
-            >
-              Enterprise Plan
-            </a>
-            <a
-              href="#download"
-              className="text-sm font-bold px-5 py-2 rounded-full transition-all"
-              style={{
-                backgroundColor: "hsl(327,100%,59%)",
-                color: "white",
-              }}
+              style={{ backgroundColor: "hsl(327,100%,59%)", color: "white" }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,50%)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px hsla(327,100%,59%,0.4)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px hsla(327,100%,59%,0.45)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.backgroundColor = "hsl(327,100%,59%)";
                 (e.currentTarget as HTMLElement).style.boxShadow = "none";
               }}
             >
-              {t("nav.downloadApp")}
+              Enterprise Plan
             </a>
           </div>
 
@@ -152,33 +139,20 @@ const Navbar = () => {
               </Link>
               <div className="flex flex-col gap-2 pt-2">
                 <a
-                  href="mailto:receiptsync@gmail.com"
-                  className="text-center py-2 rounded-full font-medium"
-                  style={{ color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.2)" }}
-                >
-                  Contact Us
-                </a>
-                <a
                   href="https://app.receiptsync.net/"
-                  className="text-center py-2 rounded-full font-medium"
-                  style={{ color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.2)" }}
+                  className="text-center py-2 rounded-full font-semibold"
+                  style={{ color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.3)" }}
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   Log In to Portal
                 </a>
                 <a
                   href="https://receiptsync.net/enterprise"
-                  className="text-center py-2 rounded-full font-bold"
-                  style={{ color: "hsl(327,100%,59%)", border: "2px solid hsl(327,100%,59%)" }}
-                >
-                  Enterprise Plan
-                </a>
-                <a
-                  href="#download"
                   className="text-center py-2.5 rounded-full font-bold"
                   style={{ backgroundColor: "hsl(327,100%,59%)", color: "white" }}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {t("nav.downloadApp")}
+                  Enterprise Plan
                 </a>
               </div>
             </div>
