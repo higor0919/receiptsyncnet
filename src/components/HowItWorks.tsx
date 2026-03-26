@@ -68,11 +68,18 @@ const HowItWorks = () => {
               }}
               className="relative max-w-sm w-full"
             >
-              <img
-                src={appHomeImg}
-                alt="ReceiptSync App"
-                className="w-full h-auto rounded-3xl"
-              />
+              <div className="relative rounded-3xl overflow-hidden" style={{background:"hsl(240,82%,14%)", boxShadow:"0 0 0 3px hsl(240,60%,25%)"}}>
+                <img
+                  src={appHomeImg}
+                  alt="ReceiptSync App"
+                  className="w-full h-auto block"
+                  style={{mixBlendMode:"normal"}}
+                />
+                {/* Dark edge mask — fades the white app UI into the dark background */}
+                <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{
+                  boxShadow: "inset 0 0 30px 20px hsl(240,82%,14%)"
+                }} />
+              </div>
               {/* Glass shine */}
               <div
                 className="absolute inset-0 rounded-3xl pointer-events-none"
