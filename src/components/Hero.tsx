@@ -36,8 +36,8 @@ const Hero = () => {
             <div>
               {/* App icon + badge */}
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-2xl shadow-lg flex items-center justify-center" style={{backgroundColor:"hsl(240,82%,22%)"}}>
-                  <img src={appIcon} alt="ReceiptSync app icon" className="w-full h-full object-contain rounded-2xl" style={{mixBlendMode:"normal"}} />
+                <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+                  <img src={appIcon} alt="ReceiptSync app icon" className="w-full h-full object-cover" />
                 </div>
                 <span
                   className="text-sm font-bold px-4 py-1.5 rounded-full"

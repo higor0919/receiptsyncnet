@@ -21,7 +21,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <img src={appIcon} alt="ReceiptSync" className="w-8 h-8 rounded-xl object-contain" style={{background:"none"}} />
+            <div className="w-8 h-8 rounded-xl overflow-hidden flex-shrink-0">
+              <img src={appIcon} alt="ReceiptSync" className="w-full h-full object-cover" />
+            </div>
             <span className="text-white font-black text-lg tracking-tight">ReceiptSync</span>
           </Link>
 
