@@ -70,6 +70,24 @@ const Navbar = () => {
               Contact Us
             </a>
             <a
+              href="https://app.receiptsync.net/"
+              className="text-sm font-medium px-4 py-2 rounded-full transition-all"
+              style={{ color: "rgba(255,255,255,0.75)", border: "1px solid rgba(255,255,255,0.25)" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "white"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.6)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.75)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.25)"; }}
+            >
+              Log In to Portal
+            </a>
+            <a
+              href="https://receiptsync.net/enterprise"
+              className="text-sm font-bold px-5 py-2 rounded-full transition-all"
+              style={{ color: "hsl(327,100%,59%)", border: "2px solid hsl(327,100%,59%)" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "hsla(327,100%,59%,0.15)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px hsla(327,100%,59%,0.3)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
+            >
+              Enterprise Plan
+            </a>
+            <a
               href="#download"
               className="text-sm font-bold px-5 py-2 rounded-full transition-all"
               style={{
@@ -139,6 +157,20 @@ const Navbar = () => {
                   style={{ color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.2)" }}
                 >
                   Contact Us
+                </a>
+                <a
+                  href="https://app.receiptsync.net/"
+                  className="text-center py-2 rounded-full font-medium"
+                  style={{ color: "rgba(255,255,255,0.8)", border: "1px solid rgba(255,255,255,0.2)" }}
+                >
+                  Log In to Portal
+                </a>
+                <a
+                  href="https://receiptsync.net/enterprise"
+                  className="text-center py-2 rounded-full font-bold"
+                  style={{ color: "hsl(327,100%,59%)", border: "2px solid hsl(327,100%,59%)" }}
+                >
+                  Enterprise Plan
                 </a>
                 <a
                   href="#download"
