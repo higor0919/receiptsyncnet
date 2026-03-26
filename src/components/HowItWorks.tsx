@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import appHomeImg from "@/assets/enhanced-home-screen.png";
+import appHomeImg from "@/assets/app-home.png";
 
 const HowItWorks = () => {
   const { t } = useTranslation();
@@ -71,7 +71,7 @@ const HowItWorks = () => {
               <img
                 src={appHomeImg}
                 alt="ReceiptSync App"
-                className="w-full h-auto"
+                className="w-full h-auto rounded-3xl"
               />
               {/* Glass shine */}
               <div
